@@ -1,0 +1,93 @@
+.RichEditor-root {
+    background: #fff;
+    border: 1px solid #ddd;
+    font-family: Lato-Regular !important;
+    font-size: 14px;
+    padding: 0px;
+    margin-bottom: 10px;
+}
+
+.RichEditor-editor {
+    border-top: 1px solid #ddd;
+    cursor: text;
+    font-size: 16px;
+    margin-top: 0;
+    padding-left: 10px;
+}
+
+.RichEditor-editor .public-DraftEditorPlaceholder-root,
+.RichEditor-editor .public-DraftEditor-content {
+    margin: 0 -15px -15px;
+    padding: 15px;
+}
+
+.RichEditor-editor .public-DraftEditor-content {
+    min-height: 150px;
+}
+
+.RichEditor-hidePlaceholder .public-DraftEditorPlaceholder-root {
+    display: none;
+}
+
+.RichEditor-editor .RichEditor-blockquote {
+    border-left: 5px solid #eee;
+    color: #666;
+    font-family: Lato-Regular !important;
+    font-style: italic;
+    margin: 16px 0;
+    padding: 10px 20px;
+}
+
+.RichEditor-editor .public-DraftStyleDefault-pre {
+    background-color: rgba(0, 0, 0, 0.05);
+    font-family: Lato-Regular !important;
+    font-size: 16px;
+    padding: 20px;
+}
+
+.RichEditor-controls {
+    font-family: Lato-Regular !important;
+    font-size: 14px;
+    margin-bottom: 0;
+    user-select: none;
+    padding-left: 10px;
+}
+
+.RichEditor-styleButton {
+    color: #999;
+    cursor: pointer;
+    margin-right: 16px;
+    padding: 2px 0;
+    display: inline-block;
+}
+
+.RichEditor-activeButton {
+    color: #5890ff;
+}
+
+/* New editor style */
+
+.rdw-storybook-root {
+    /*margin: 50px;*/
+    width: 100%;
+}
+
+.rdw-storybook-wrapper {
+}
+
+.rdw-storybook-editor {
+    border: 1px solid #F1F1F1;
+    padding: 5px;
+    border-radius: 2px;
+    height: 200px;
+}
+.rdw-storybook-toolbar {
+    top: -130px;
+}
+.rdw-storybook-textarea {
+    margin-top: 20px;
+    resize: none;
+    width: 100%;
+    border: 1px solid #F1F1F1;
+    height: 100px;
+}
