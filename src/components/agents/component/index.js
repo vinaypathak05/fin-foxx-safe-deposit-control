@@ -2,9 +2,10 @@ import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import _ from "lodash";
 import {Container,Card,CardHeader,CardBody,CardFooter,Table,Row,Col,Button} from "reactstrap";
-import {fetchAgents,openAgentCreateModal} from '../action';
+import {fetchAgents,searchAgents,openAgentCreateModal,agentKycFiles,selectedAgentDetails} from '../action';
 import RenderList from './agents-list';
 import CreateNew from './agent-add';
+import ApproveAgents from './agent-approve';
 import Header from "../../Headers/Header.jsx";
 import Pagination from '../../Common/pagination';
 import {itemCount} from '../../Common/constant';
@@ -19,9 +20,17 @@ class Agents extends Component {
 
     componentDidMount() {
         this.props.fetchAgents(this.props.session);
+        this.props.selectedAgentDetails({agentDetails: {}});
     }
 
     openModal = () => {
+        var files = [
+            {label:'Profile Photo', key:'agentpic', file:'', filename:''},
+            {label:'Aadhaar Front Photo', key:'aadhaarfrontpic', file:'', filename:''},
+            {label:'Aadhar Back Photo', key:'aadhaarbackpic', file:'', filename:''},
+        ];
+
+        this.props.agentKycFiles(files);
         this.props.openAgentCreateModal({showModal: true});
     }
 
@@ -39,9 +48,9 @@ class Agents extends Component {
             });
         }
         else {
-            // this.props.searchAdminPosts(this.props.session, search, pageNumber, (response) => {
+            this.props.searchAgents(this.props.session, search, pageNumber, (response) => {
                 
-            // });
+            });
         }
         this.setState({search, pageNumber});    
     }
@@ -55,9 +64,9 @@ class Agents extends Component {
             });
         }
         else {
-            // this.props.searchAdminPosts(this.props.session, search, pageNumber, (response) => {
+            this.props.searchAgents(this.props.session, search, pageNumber, (response) => {
                 
-            // });
+            });
         }
         this.setState({...this.state, pageNumber});
     }
@@ -66,13 +75,13 @@ class Agents extends Component {
         let {agentsList} = this.props;
         let {pageNumber} = this.state;
 
-        return _.map(agentsList.data, item => {
-            return <RenderList key={`key_${item.id}`} printList={item} pagination={this.paginationCallback} currentPage={pageNumber}/>;
+        return _.map(agentsList.data, (item, index) => {
+            return <RenderList key={`key_${index}`} history={this.props.history} printList={item} pagination={this.paginationCallback} currentPage={pageNumber}/>;
         });
     }
     
     render() {
-        let {agentsList,modalStatus} = this.props;
+        let {agentsList,modalStatus,agentApproveModal} = this.props;
         let {search} = this.state;
         
         return (
@@ -90,7 +99,7 @@ class Agents extends Component {
                                         &nbsp;
                                         <Button color="primary" type="button" onClick={this.openModal}>{LocaleStrings.button_add_new}</Button>
                                         
-                                        {modalStatus && modalStatus.showModal ? <CreateNew /> : '' }
+                                        {modalStatus && modalStatus.showModal ? <CreateNew finishOperationsCallback={this.additionalCallback}/> : '' }
                                     </div>
                                 </Col>
                             </Row>
@@ -102,7 +111,7 @@ class Agents extends Component {
                             {agentsList && agentsList.data ?
                                 <div style={{marginTop:15}}>
                                     {agentsList.data && agentsList.data.length > 0 ?
-                                        <Table className="align-items-center table-flush min-height-135" responsive>
+                                        <Table className="align-items-center table-flush min-height-135 tablelist" responsive>
                                             <thead className="thead-light">
                                                 <tr>
                                                     <th scope="col">{LocaleStrings.agents_table_th_name}</th>
@@ -127,7 +136,7 @@ class Agents extends Component {
                                             <Pagination
                                                 activePage={this.state.pageNumber}
                                                 itemsCountPerPage={itemCount}
-                                                totalItemsCount={agentsList.count+1}
+                                                totalItemsCount={agentsList.count}
                                                 pageRangeDisplayed={3}
                                                 onChange={this.paginationCallback}
                                             />
@@ -144,6 +153,8 @@ class Agents extends Component {
                         </CardBody>
                     </Card>
                 </Container>
+
+                {agentApproveModal && agentApproveModal.showModal ? <ApproveAgents finishOperationsCallback={this.additionalCallback}/> : '' }
             </>
         );
     }
@@ -156,6 +167,7 @@ function mapStateToProps(state) {
         session : state.session,
         agentsList: state.agentsList,
         modalStatus: state.agentCreateModal,
+        agentApproveModal: state.agentApproveModal,
     }
 }
-export default connect(mapStateToProps, {fetchAgents,openAgentCreateModal})(Agents);
+export default connect(mapStateToProps, {fetchAgents,searchAgents,openAgentCreateModal,agentKycFiles,selectedAgentDetails})(Agents);

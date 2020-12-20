@@ -1,4 +1,5 @@
-import React from "react";
+import React, {Component} from "react";
+import {connect} from "react-redux";
 import _ from "lodash";
 import { NavLink as NavLinkRRD, Link } from "react-router-dom";
 // nodejs library to set properties for components
@@ -35,38 +36,43 @@ import {
   Col
 } from "reactstrap";
 
+import {logout} from '../action';
 import LocaleStrings from '../../languages';
 var ps;
 
-class Sidebar extends React.Component {
+class Sidebar extends Component {
   state = {
     collapseOpen: false
   };
+
   constructor(props) {
     super(props);
     this.activeRoute.bind(this);
   }
+
   // verifies if routeName is the one active (in browser input)
   activeRoute(routeName) {
     return this.props.location.pathname.indexOf(routeName) > -1 ? "active" : "";
   }
+
   // toggles collapse between opened and closed (true/false)
   toggleCollapse = () => {
     this.setState({
       collapseOpen: !this.state.collapseOpen
     });
   };
+
   // closes the collapse
   closeCollapse = () => {
     this.setState({
       collapseOpen: false
     });
   };
+
   // creates the links that appear in the left menu / Sidebar
   createLinks = routes => {
     var routesNew = _.filter(routes, function(list) { return list.display }); // custom check is login not display in sidebar
-
-
+    
     return routesNew.map((prop, key) => {
       return (
         <NavItem key={key}>
@@ -83,6 +89,11 @@ class Sidebar extends React.Component {
       );
     });
   };
+
+  onLogoutClicked = () => {
+    this.props.logout(this.props.session);
+  }
+
   render() {
     const { bgColor, routes, logo } = this.props;
     let navbarBrandProps;
@@ -171,7 +182,7 @@ class Sidebar extends React.Component {
                   <span>Support</span>
                 </DropdownItem>
                 <DropdownItem divider /> */}
-                <DropdownItem href="#pablo" onClick={e => e.preventDefault()}>
+                <DropdownItem href="#pablo" onClick={this.onLogoutClicked}>
                   <i className="ni ni-user-run" />
                   <span>{LocaleStrings.button_logout}</span>
                 </DropdownItem>
@@ -254,4 +265,11 @@ Sidebar.propTypes = {
   })
 };
 
-export default Sidebar;
+function mapStateToProps(state) {
+  return {
+    session : state.session,
+  };
+}
+
+// export default Sidebar;
+export default connect(mapStateToProps, {logout})(Sidebar);

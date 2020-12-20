@@ -16,7 +16,6 @@ import "./assets/vendor/nucleo/css/nucleo.css";
 import "./assets/vendor/@fortawesome/fontawesome-free/css/all.min.css";
 import "./assets/scss/argon-dashboard-react.scss";
 import "./assets/css/custom.css";
-import "./assets/css/users.css";
 import "./assets/css/rich-text-editor.css";
 import "./assets/css/react-confirm-alert.css";
 

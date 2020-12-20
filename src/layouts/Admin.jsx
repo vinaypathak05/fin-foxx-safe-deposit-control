@@ -58,7 +58,7 @@ class Admin extends Component {
           routes={routes}
           logo={{
             innerLink: "/admin/index",
-            imgSrc: require("../assets/img/brand/tikwash_logo.jpg"),
+            imgSrc: require("../assets/img/brand/main_logo.png"),
             imgAlt: "..."
           }}
         />

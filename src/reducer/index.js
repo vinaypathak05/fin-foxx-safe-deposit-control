@@ -3,7 +3,9 @@ import {reducer as formReducer} from 'redux-form';
 import {loadState} from './localStorage';
 import {ErrorBarReducer} from '../components/Common/errorbar';
 import {LOGIN,LOGIN_USER_DETAILS} from '../components/action';
-import {agentsList,agentCreateModal} from '../components/agents/reducer';
+import {allAgentsList,agentsList,agentCreateModal,uploadedAgentKycFiles,agentApproveModal,selectedAgent,agentWalletRecharges,agentCustomers,agentWalletRechrgeModal} from '../components/agents/reducer';
+import {customersList,customerCreateModal,customerKYCFiles,customerPaymentReceiveModal,customerApproveModal,selectedCustomer,singelCustomerPayments} from '../components/customers/reducer';
+import {allPlansList,plansList,planCreateModal} from '../components/plans/reducer';
 
 var LoginReducer = (state = {}, action) =>{  // need to change it to false
     let loadstate = loadState();
@@ -87,8 +89,29 @@ var rootReducer = combineReducers({
     errorBar: ErrorBarReducer,
 
     // Agents
+    allAgentsList: allAgentsList,
     agentsList: agentsList,
     agentCreateModal: agentCreateModal,
+    uploadedAgentKycFiles: uploadedAgentKycFiles,
+    agentApproveModal: agentApproveModal,
+    selectedAgent: selectedAgent,
+    agentWalletRecharges: agentWalletRecharges,
+    agentCustomers: agentCustomers,
+    agentWalletRechrgeModal: agentWalletRechrgeModal,
+
+    // Customers
+    customersList: customersList,
+    customerCreateModal: customerCreateModal,
+    customerKYCFiles: customerKYCFiles,
+    customerPaymentReceiveModal: customerPaymentReceiveModal,
+    customerApproveModal: customerApproveModal,
+    selectedCustomer: selectedCustomer,
+    singelCustomerPayments: singelCustomerPayments,
+
+    // Plans
+    allPlansList: allPlansList,
+    plansList: plansList,
+    planCreateModal: planCreateModal,
 });
 
 export default rootReducer;
