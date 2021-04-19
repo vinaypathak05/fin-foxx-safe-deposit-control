@@ -220,6 +220,8 @@ const LocaleStrings = new LocalizedStrings({
     plans_add_form_ph_planduration: "Enter plan duration",
     plans_add_form_label_planprice: "Plan Price",
     plans_add_form_ph_planprice: "Enter plan price",
+    plans_add_form_label_planmode: "Plan Mode",
+    plans_add_form_ph_planmode: "Select plan mode",
     plans_form_validation_plan_duration_min:
       "Plan duration should be greated then 1",
     plans_form_validation_plan_price_min: "Plan price should be greated then 1",
