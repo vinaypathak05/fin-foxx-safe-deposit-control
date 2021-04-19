@@ -91,6 +91,8 @@ const LocaleStrings = new LocalizedStrings({
     agents_add_form_ph_lastname: "Enter your last name",
     agents_add_form_label_mobile: "Mobile",
     agents_add_form_ph_mobile: "Enter your mobile number",
+    agents_add_form_label_password: "Password",
+    agents_add_form_ph_password: "Enter password for agent",
     agents_add_form_label_bank_name: "Bank Name",
     agents_add_form_ph_bank_name: "Enter your bank name",
     agents_add_form_label_account_number: "Account Number",
@@ -101,6 +103,8 @@ const LocaleStrings = new LocalizedStrings({
     agents_add_form_ph_ifsc: "Enter your bank ifsc code",
     agents_validation_invalid_email: "Invalid email",
     agents_validation_invalid_mobile_number: "Invalid mobile format",
+    agents_validation_invalid_min_password:
+      "Please enter minimum 8 characters password",
     agents_add_form_success: "Agent added successfully.!",
     agents_approve_madal_title_approve_agent: "Approve Agent",
     agents_approve_label_select: "Select Option",
@@ -124,7 +128,7 @@ const LocaleStrings = new LocalizedStrings({
     agents_detail_wallet_add_form_ph_amount: "Enter recharge amount",
     agents_detail_wallet_validation_invalid_amount: "Minimum amount is 10",
     agents_detail_wallet_validation_security_amount_required:
-      "First time agent have to pay more or equal to security deposit money",
+      "First time agent have to pay minimum Rs 550",
     agents_detail_wallet_text_security_money:
       "Pay your security money with first recharge",
     agents_detail_wallet_add_form_success: "Wallet recharged successfully.!",
