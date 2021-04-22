@@ -9,9 +9,8 @@ import {
 } from "reactstrap";
 import {
   activateDeactivateCustomer,
-  openCustomerPaymentModal,
+  // openCustomerPaymentModal,
   openCustomerApproveModal,
-  selectedCustomerDetails,
 } from "../action";
 import { showSuccess, showError } from "../../Common/errorbar";
 import { COMMON_FAIL_MESSAGE } from "../../Common/constant";
@@ -28,25 +27,22 @@ class CustomersList extends Component {
   };
 
   openRowDetails = (e) => {
-    this.props.selectedCustomerDetails({ details: this.props.printList });
-    setTimeout(() => {
-      this.props.history.push({
-        pathname: "/admin/customer/" + this.props.printList.customerid,
-        state: { selected: this.props.printList },
-      });
-    }, 1000);
-  };
-
-  collectAmount = (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-
-    this.props.openCustomerPaymentModal({
-      showModal: true,
-      callfrom: this.props.callfrom,
-      details: this.props.printList,
+    this.props.history.push({
+      pathname: "/admin/customer/" + this.props.printList.customerid,
+      state: { selected: this.props.printList },
     });
   };
+
+  // collectAmount = (e) => {
+  //   e.preventDefault();
+  //   e.stopPropagation();
+
+  //   this.props.openCustomerPaymentModal({
+  //     showModal: true,
+  //     callfrom: this.props.callfrom,
+  //     details: this.props.printList,
+  //   });
+  // };
 
   approveAction = (e) => {
     e.preventDefault();
@@ -100,12 +96,12 @@ class CustomersList extends Component {
               <i className="fas fa-ellipsis-v" />
             </DropdownToggle>
             <DropdownMenu className="dropdown-menu-arrow" right>
-              {printList.status === "active" &&
+              {/* {printList.status === "active" &&
               printList.approvalstatus == "approved" ? (
                 <DropdownItem onClick={this.collectAmount}>
                   {LocaleStrings.button_amount_collect}
                 </DropdownItem>
-              ) : null}
+              ) : null} */}
               {printList.status == "active" &&
               (printList.approvalstatus == "submitted" ||
                 printList.approvalstatus == "onhold") ? (
@@ -128,10 +124,8 @@ class CustomersList extends Component {
         {callfrom === "customer" ? <td>{printList.agentname}</td> : null}
         <td>{printList.email}</td>
         <td>{printList.mobile}</td>
-        <td className="text-capitalize">{printList.paymentmode}</td>
-        <td>{printList.paidtilldate}</td>
-        <td>{printList.planleftamount}</td>
-        <td>{printList.planamount}</td>
+        <td className="text-capitalize">{printList.approvalstatus}</td>
+        <td className="text-capitalize">{printList.status}</td>
       </tr>
     );
   }
@@ -145,9 +139,8 @@ export var mapStateToProps = (state) => {
 
 export default connect(mapStateToProps, {
   activateDeactivateCustomer,
-  openCustomerPaymentModal,
+  // openCustomerPaymentModal,
   openCustomerApproveModal,
-  selectedCustomerDetails,
   showSuccess,
   showError,
 })(CustomersList);

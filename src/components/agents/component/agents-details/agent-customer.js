@@ -136,25 +136,19 @@ class AgentCustomer extends Component {
                           {LocaleStrings.customers_table_th_customercode}
                         </th>
                         <th scope="col">
-                          {LocaleStrings.agents_detail_table_th_fullname}
+                          {LocaleStrings.customers_table_th_name}
                         </th>
                         <th scope="col">
-                          {LocaleStrings.agents_detail_table_th_email}
+                          {LocaleStrings.customers_table_th_email}
                         </th>
                         <th scope="col">
-                          {LocaleStrings.agents_detail_table_th_mobile}
+                          {LocaleStrings.customers_table_th_mobile}
                         </th>
                         <th scope="col">
-                          {LocaleStrings.agents_detail_table_th_paymentmode}
+                          {LocaleStrings.customers_table_th_approvalstatus}
                         </th>
                         <th scope="col">
-                          {LocaleStrings.agents_detail_table_th_paidtilldate}
-                        </th>
-                        <th scope="col">
-                          {LocaleStrings.agents_detail_table_th_dueamount}
-                        </th>
-                        <th scope="col">
-                          {LocaleStrings.agents_detail_table_th_planamount}
+                          {LocaleStrings.customers_table_th_status}
                         </th>
                       </tr>
                     </thead>

@@ -307,6 +307,7 @@ export function fetchSingleAgentCustomers(
   body.append("agentid", id);
   body.append("limit", perPage);
   body.append("offset", offset);
+  body.append("include_count", true);
 
   var url = `${BASE_URL}/api/agentcustomers`;
 

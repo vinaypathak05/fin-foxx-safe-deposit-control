@@ -1,8 +1,13 @@
 import React, { Component } from "react";
 import _ from "lodash";
+import moment from "moment";
 import Select from "react-select";
-import { LABEL_POSITION_TOP, LABEL_POSITION_LEFT } from "./constant";
-
+import DatePicker from "react-datetime";
+import {
+  LABEL_POSITION_TOP,
+  LABEL_POSITION_LEFT,
+  DISPLAY_DATE_FORMAT,
+} from "./constant";
 export class BaseComponent extends Component {
   validateDaysNumber = ({ get, value, fieldProps, fields, form }) => {
     // console.log('value :- ', value)
@@ -43,6 +48,7 @@ export class BaseComponent extends Component {
     let check = value != "";
     return check;
   };
+
   validateWebsite = ({ get, value, fieldProps, fields, form }) => {
     if (value != "") {
       let re = /^(?:(ftp|http|https):\/\/)?(?:[\w-]+\.)+[a-z]{2,6}$/;
@@ -51,6 +57,7 @@ export class BaseComponent extends Component {
       return check;
     }
   };
+
   validateAlphaNumeric = ({ get, value, fieldProps, fields, form }) => {
     let re = /^[a-z0-9]+$/i;
     let check = re.test(value);
@@ -383,4 +390,70 @@ export class BaseComponent extends Component {
       </div>
     );
   }
+
+  renderDatePicker(field) {
+    // console.log("field :- ", field);
+    var {
+      input,
+      selected,
+      disabled,
+      label,
+      labelposition,
+      isHidePastDate,
+      meta,
+    } = field;
+
+    var value = input.value
+      ? moment(input.value).format(DISPLAY_DATE_FORMAT)
+      : selected
+      ? moment(selected).format(DISPLAY_DATE_FORMAT)
+      : null;
+
+    var divClassName = `form-group row ${
+      meta.touched && meta.error ? "has-danger" : ""
+    }`;
+    var labelClasses = "custom-label col-sm-3";
+    var inputClasses = "col-sm-9 col-sm-offset-0";
+
+    if (labelposition === LABEL_POSITION_TOP) {
+      labelClasses = "custom-label col-sm-12";
+      inputClasses = "col-sm-12 col-sm-offset-0";
+    }
+
+    return (
+      <div className={divClassName}>
+        {label !== "" ? (
+          <label className={labelClasses}>
+            {label}
+            <span className="label-mandatory">
+              {field.mandatory === "true" ? "*" : ""}
+            </span>
+          </label>
+        ) : null}
+
+        <div className={inputClasses}>
+          <DatePicker
+            className=""
+            name={input.name}
+            {...input}
+            inputProps={{ placeholder: field.placeholder }}
+            value={value}
+            dateFormat={DISPLAY_DATE_FORMAT}
+            disabled={disabled}
+            timeFormat={false}
+            // closeOnSelect={true}
+            isValidDate={isHidePastDate === "true" ? valid : null}
+          />
+          <div className="text-help label-text-help">
+            {meta.touched ? meta.error : ""}
+          </div>
+        </div>
+      </div>
+    );
+  }
+}
+
+var yesterday = moment().subtract(1, "day");
+function valid(current) {
+  return current.isAfter(yesterday);
 }

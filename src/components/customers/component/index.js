@@ -19,10 +19,9 @@ import {
   customerKycFiles,
 } from "../action";
 import { fetchAllAgents } from "../../agents/action";
-import { fetchAllPlans } from "../../plans/action";
 import RenderList from "./customers-list";
 import CreateNew from "./customer-add";
-import CustomerPayment from "./customer-amount-received";
+// import CustomerPayment from "./customer-amount-received";
 import ApproveCustomer from "./customer-approve";
 import Header from "../../Headers/Header.jsx";
 import Pagination from "../../Common/pagination";
@@ -39,7 +38,6 @@ class Customers extends Component {
   componentDidMount() {
     this.props.fetchCustomers(this.props.session);
     this.props.fetchAllAgents(this.props.session);
-    this.props.fetchAllPlans(this.props.session);
   }
 
   openModal = () => {
@@ -136,7 +134,7 @@ class Customers extends Component {
     let {
       customersList,
       modalStatus,
-      customerPaymentModalStatus,
+      // customerPaymentModalStatus,
       customerApproveModal,
     } = this.props;
     let { search } = this.state;
@@ -200,22 +198,16 @@ class Customers extends Component {
                             {LocaleStrings.customers_table_th_agentname}
                           </th>
                           <th scope="col">
-                            {LocaleStrings.agents_detail_table_th_email}
+                            {LocaleStrings.customers_table_th_email}
                           </th>
                           <th scope="col">
-                            {LocaleStrings.agents_detail_table_th_mobile}
+                            {LocaleStrings.customers_table_th_mobile}
                           </th>
                           <th scope="col">
-                            {LocaleStrings.agents_detail_table_th_paymentmode}
+                            {LocaleStrings.customers_table_th_approvalstatus}
                           </th>
                           <th scope="col">
-                            {LocaleStrings.agents_detail_table_th_paidtilldate}
-                          </th>
-                          <th scope="col">
-                            {LocaleStrings.agents_detail_table_th_dueamount}
-                          </th>
-                          <th scope="col">
-                            {LocaleStrings.agents_detail_table_th_planamount}
+                            {LocaleStrings.customers_table_th_status}
                           </th>
                         </tr>
                       </thead>
@@ -250,11 +242,11 @@ class Customers extends Component {
           </Card>
         </Container>
 
-        {customerPaymentModalStatus && customerPaymentModalStatus.showModal ? (
+        {/* {customerPaymentModalStatus && customerPaymentModalStatus.showModal ? (
           <CustomerPayment finishOperationsCallback={this.additionalCallback} />
         ) : (
           ""
-        )}
+        )} */}
         {customerApproveModal && customerApproveModal.showModal ? (
           <ApproveCustomer finishOperationsCallback={this.additionalCallback} />
         ) : (
@@ -272,7 +264,7 @@ function mapStateToProps(state) {
     session: state.session,
     customersList: state.customersList,
     modalStatus: state.customerCreateModal,
-    customerPaymentModalStatus: state.customerPaymentReceiveModal,
+    // customerPaymentModalStatus: state.customerPaymentReceiveModal,
     customerApproveModal: state.customerApproveModal,
   };
 }
@@ -282,5 +274,4 @@ export default connect(mapStateToProps, {
   openCustomerCreateModal,
   customerKycFiles,
   fetchAllAgents,
-  fetchAllPlans,
 })(Customers);

@@ -1,181 +1,193 @@
 /* React Advance Form Start*/
 .fatWUN {
-    /* position: unset!important; */
-    display: unset!important;
-    /* flex-wrap: unset!important; */
-    /* width: 100%!important */
+  /* position: unset!important; */
+  display: unset !important;
+  /* flex-wrap: unset!important; */
+  /* width: 100%!important */
 }
 
 .sc-EHOje {
-    width: 100%!important
+  width: 100% !important;
 }
 
 .sc-jTzLTM {
-    width: 100%!important
+  width: 100% !important;
 }
 /* React Advance Form End*/
 
 .cursor-pointer {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 hr {
-    margin: 0;
+  margin: 0;
 }
 
 .button-vertical-center {
-    margin: auto;
-    padding-left: 0px;
-    padding-right: 0px;
+  margin: auto;
+  padding-left: 0px;
+  padding-right: 0px;
 }
 
 .inputsearch {
-    background: url(../img/icons/search_icon.png) no-repeat 1% 60% !important;
-    padding-left: 30px !important;
-    /* height: 30px !important; */
-    font-size: 12px !important;
+  background: url(../img/icons/search_icon.png) no-repeat 1% 60% !important;
+  padding-left: 30px !important;
+  /* height: 30px !important; */
+  font-size: 12px !important;
 }
 
 .loaderstyle {
-    text-align: center;
-    padding: 21px;
+  text-align: center;
+  padding: 21px;
 }
 
 .async-select {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-    font-size: 16px;
-    font-weight: 300;
-    color: #757575;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-size: 16px;
+  font-weight: 300;
+  color: #757575;
 }
 
 .no-content-message {
-    color: #a2a3b1;
-    text-align: center;
-    padding: 30px;
+  color: #a2a3b1;
+  text-align: center;
+  padding: 30px;
 }
 
 .min-height-135 {
-    min-height: 135px;
+  min-height: 135px;
 }
 
 .deactivated {
-    background-color: #eeefeb;
+  background-color: #eeefeb;
 }
 
 .deleted {
-    background-color: #f3dfdf;
+  background-color: #f3dfdf;
 }
 
 /* Form related */
 .custom-label {
-    color: rgb(119, 119, 119);
-    font-weight: 300;
+  color: rgb(119, 119, 119);
+  font-weight: 300;
 }
 
 /* Feld Error message display */
 .has-danger:after {
-    clear: both;
-    content: " ";
-    background-color: white;
+  clear: both;
+  content: " ";
+  background-color: white;
 }
 
 .has-danger .form-control {
-    border-color: #f1a188!important;
+  border-color: #f1a188 !important;
 }
 
 .text-help {
-    color: #f1a188;
+  color: #f1a188;
 }
 
 .label-text-help {
-    font-size: 12px;
+  font-size: 12px;
 }
 
 /* Customize the label (the container) */
 .custom-container-radio {
-    font-weight: 500;
-    color: #545a6e;
-    font-size: 14px;
-    display: block;
-    position: relative;
-    padding-left: 24px;
-    margin-bottom: 12px;
-    cursor: pointer;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
+  font-weight: 500;
+  color: #545a6e;
+  font-size: 14px;
+  display: block;
+  position: relative;
+  padding-left: 24px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 /* Hide the browser's default radio button */
 .custom-container-radio input {
-    position: absolute;
-    opacity: 0;
-    cursor: pointer;
-    height: 0;
-    width: 0;
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
 }
-  
+
 /* Create a custom radio button */
 .radiomark {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 20px;
-    width: 20px;
-    border: solid 1px #dce2e9;
-    background-color: #ffffff;
-    border-radius: 50%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 20px;
+  border: solid 1px #dce2e9;
+  background-color: #ffffff;
+  border-radius: 50%;
 }
-  
+
 /* On mouse-over, add a grey background color */
 .custom-container-radio:hover input ~ .radiomark {
-    border: solid 1px #dce2e9;
-    background-color: #f6f7fb;
+  border: solid 1px #dce2e9;
+  background-color: #f6f7fb;
 }
-  
+
 /* When the radio button is checked, add a blue background */
 .custom-container-radio input:checked ~ .radiomark {
-    background-color: #1665d8;
+  background-color: #1665d8;
 }
-  
+
 /* Create the indicator (the dot/circle - hidden when not checked) */
 .radiomark:after {
-    content: "";
-    position: absolute;
-    display: none;
+  content: "";
+  position: absolute;
+  display: none;
 }
-  
+
 /* Show the indicator (dot/circle) when checked */
 .custom-container-radio input:checked ~ .radiomark:after {
-    display: block;
+  display: block;
 }
-  
+
 /* Style the indicator (dot/circle) */
 .custom-container-radio .radiomark:after {
-    top: 5.7px;
-    left: 5.5px;
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: #ffffff;
+  top: 5.7px;
+  left: 5.5px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #ffffff;
 }
 /*---------------------------------------------*/
 
-.tablelist tr:nth-child(even){
-    background-color: #fafafa !important;
+.tablelist tr:nth-child(even) {
+  background-color: #fafafa !important;
 }
 
 .tablelist tr:hover {
-    background-color: #eefdff !important; 
-    cursor: pointer !important;
+  background-color: #eefdff !important;
+  cursor: pointer !important;
 }
 
 .content-files-dropbox {
-    padding: 10px;
-    text-align: center;
-    border: 1px dashed #2676ea;
-    border-radius: 5px;
-    background: white;
-    margin-bottom: 10px;
+  padding: 10px;
+  text-align: center;
+  border: 1px dashed #2676ea;
+  border-radius: 5px;
+  background: white;
+  margin-bottom: 10px;
+}
+
+.steps-icon-arrow {
+  font-size: 1.563rem;
+  padding-top: 0.625rem;
+}
+.steps-icon-arrow .circle-up {
+  color: #2676ea;
+}
+.steps-icon-arrow .updown-icon:hover {
+  color: #2676ea;
 }

@@ -52,8 +52,11 @@ const LocaleStrings = new LocalizedStrings({
     button_recharge: "Recharge",
     button_new_customer: "New Customer",
     button_amount_collect: "Collect Amount",
+    button_reward_amount: "Reward Amount",
+    button_cashback_amount: "Cashback Amount",
     button_upload_new_file: "Upload New File",
     button_view_kyc: "View KYC",
+    button_new_plan: "New Plan",
 
     //Login
     welcome: "Welcome",
@@ -132,15 +135,6 @@ const LocaleStrings = new LocalizedStrings({
     agents_detail_wallet_text_security_money:
       "Pay your security money with first recharge",
     agents_detail_wallet_add_form_success: "Wallet recharged successfully.!",
-    agents_detail_table_th_fullname: "Fullname",
-    agents_detail_table_th_email: "Email",
-    agents_detail_table_th_mobile: "Mobile",
-    agents_detail_table_th_paymentmode: "Payment Mode",
-    agents_detail_table_th_paidtilldate: "Paid Upto",
-    agents_detail_table_th_planname: "Plan Name",
-    agents_detail_table_th_planduration: "Plan Duration",
-    agents_detail_table_th_dueamount: "Due",
-    agents_detail_table_th_planamount: "Plan Amount",
 
     // Customers
     customers_table_th_customercode: "Customer Code",
@@ -148,7 +142,7 @@ const LocaleStrings = new LocalizedStrings({
     customers_table_th_agentname: "Agent Name",
     customers_table_th_email: "Email",
     customers_table_th_mobile: "Mobile",
-    customers_table_th_payment_mode: "Payment Mode",
+    customers_table_th_approvalstatus: "Approval Status",
     customers_table_th_status: "Status",
     customers_alert_deactivated: "Customer deactivated successfully.!",
     customers_alert_activated: "Customer activated successfully.!",
@@ -159,10 +153,6 @@ const LocaleStrings = new LocalizedStrings({
     customers_madal_tab_text_docs_details: "Docs Details",
     customers_add_form_label_user_agent: "Agent",
     customers_add_form_ph_user_agent: "Select user agent",
-    customers_add_form_label_plan: "Plans",
-    customers_add_form_ph_plan: "Select user plan",
-    customers_add_form_label_payment_mode: "Payment Mode",
-    customers_add_form_ph_payment_mode: "Select payment mode",
     customers_add_form_label_email: "Email",
     customers_add_form_ph_email: "Enter your email",
     customers_add_form_label_firstname: "First Name",
@@ -171,6 +161,8 @@ const LocaleStrings = new LocalizedStrings({
     customers_add_form_ph_lastname: "Enter your last name",
     customers_add_form_label_mobile: "Mobile",
     customers_add_form_ph_mobile: "Enter your mobile number",
+    customers_add_form_label_aadhaarno: "Aadhaar Number",
+    customers_add_form_ph_aadhaarno: "Enter your aadhaar number",
     customers_add_form_label_address1: "Address Line 1",
     customers_add_form_ph_address1: "Enter address line 1",
     customers_add_form_label_address2: "Address Line 2",
@@ -181,7 +173,9 @@ const LocaleStrings = new LocalizedStrings({
     customers_add_form_ph_state: "Enter state name",
     customers_add_form_label_pin: "Pincode",
     customers_add_form_ph_pin: "Enter pincode",
+    customers_validation_invalid_aadhaar_number: "Invalid aadhaar format",
 
+    customers_payment_received_text_agent_wallet: "Agent wallet amount",
     customers_payment_received_madal_title: "Collect Payment",
     customers_payment_received_form_label_amount: "Amount",
     customers_payment_received_form_ph_amount: "Enter amount",
@@ -196,6 +190,14 @@ const LocaleStrings = new LocalizedStrings({
     customers_payment_received_form_success:
       "Customer payment done successfully.!",
 
+    customers_reward_payment_madal_title: "Customer Reward Payment",
+    customers_reward_payment_form_label_amount: "Amount",
+    customers_reward_payment_form_ph_amount: "Enter reward amount",
+    customers_reward_payment_form_validation_less_amount:
+      "You can not pay amount less than customer's total paid amount.",
+    customers_reward_payment_form_success:
+      "Customer reward payment done successfully.!",
+
     customers_approve_madal_title_approve_customer: "Approve Customer",
     customers_approve_label_select: "Select Option",
     customers_approve_label_option1: "Submitted",
@@ -205,11 +207,30 @@ const LocaleStrings = new LocalizedStrings({
     customers_approve_form_success:
       "Agent approval status updated successfully.!",
 
+    customer_detail_text_ongoing_plans: "Ongoing Plans",
+    customer_detail_text_completed_plans: "Completed Plans",
+    customer_detail_text_reward_plans: "Pending Reward",
+    customer_detail_text_plan_details: "Plan Details",
+    customer_detail_text_transaction_history: "Statement",
     customer_detail_text_plan_amount: "Plan Amount",
-    customer_detail_text_plan_due_amount: "Plan Left Amount",
+    customer_detail_text_plan_mode: "Payment Mode",
+    customer_detail_text_plan_valid_from: "Valid From",
+    customer_detail_text_plan_valid_to: "Valid To",
+    customer_detail_text_paid_till_date: "Paid Till Date",
+    customer_detail_text_payment_left: "Amount Due",
+    customer_detail_text_no_record: "No recode available",
 
-    customer_detail_table_th_payment_amount: "Payment Amount",
     customer_detail_table_th_payment_date: "Date",
+    customer_detail_table_th_payment_description: "Description",
+    customer_detail_table_th_payment_cr: "Credit",
+    customer_detail_table_th_payment_dr: "Debit",
+
+    customers_new_plan_madal_title: "Add Customer New Plan",
+    customers_plan_form_label_plan: "Plan",
+    customers_plan_form_ph_plan: "Select plan",
+    customers_plan_form_label_activate_date: "Plan Activate From",
+    customers_plan_form_ph_activate_date: "Select date",
+    customers_plan_form_success: "New Plan added successfully!",
 
     // Plans
     plans_table_th_name: "Plan Name",

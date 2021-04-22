@@ -1,31 +1,37 @@
-import React, {Component} from 'react';
-import {connect} from 'react-redux';
-import {converDateIntoLocal} from '../../../Common/constant';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { converDateIntoLocal } from "../../../Common/constant";
 
 class CustomerPaymentItems extends Component {
+  constructor(props) {
+    super(props);
+  }
 
-    constructor(props) {
-        super(props);
-    }
+  render() {
+    let { printList } = this.props;
 
-    render() {
-        let {printList} = this.props;
-        
-        return (
-            <tr>                
-                <td>{printList.amountpaid}</td>
-                <td>{converDateIntoLocal(printList.createdon)}</td>
-                <td className="text-right"></td>
-            </tr>
-        );
-    }
+    return (
+      <tr>
+        <td width="20%">{converDateIntoLocal(printList.createdon)}</td>
+        <td width="40%">{printList.description}</td>
+        <td width="20%">
+          {printList.transactiontype === "CRA" ? printList.amountpaid : ""}
+        </td>
+        <td width="20%">
+          {printList.transactiontype === "CASHBACK" ||
+          printList.transactiontype === "REWARD"
+            ? printList.amountpaid
+            : ""}
+        </td>
+      </tr>
+    );
+  }
 }
 
 export var mapStateToProps = (state) => {
-
-    return {
-        session: state.session,
-    }
-}
+  return {
+    session: state.session,
+  };
+};
 
 export default connect(mapStateToProps)(CustomerPaymentItems);
