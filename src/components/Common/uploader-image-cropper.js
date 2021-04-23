@@ -149,7 +149,7 @@ export default function ImageCropper(props) {
         <Dropzone onDrop={onDropFile} accept="image/*" multiple={false}>
           {({ getRootProps, getInputProps }) => (
             // <section className={`${hideDropZoneClass}`}>
-            <div {...getRootProps()} className={`${className}`}>
+            <div {...getRootProps()} className={`${className} cursor-pointer`}>
               <input {...getInputProps()} />
               <img src={insideImage} style={insideImageStyle} />
               <div className="custom-text3-normal">{insideText}</div>

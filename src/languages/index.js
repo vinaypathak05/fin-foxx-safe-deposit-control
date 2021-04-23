@@ -15,6 +15,8 @@ const LocaleStrings = new LocalizedStrings({
     next: "Next",
     close: "Close",
     payments: "Payments",
+    invalid_profile_image_size:
+      "Image is smaller than recommended image, upload another image.!",
 
     // Menu
     dashboard: "Dashboard",
