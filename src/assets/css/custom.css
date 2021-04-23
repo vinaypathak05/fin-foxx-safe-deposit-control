@@ -262,3 +262,9 @@ hr {
 .dropzone-control-button button {
   margin: 2px 2px 2px 0;
 }
+
+@media (max-width: 425px) {
+  .cutomer-plan-tabs .nav-item {
+    font-size: 12px;
+  }
+}

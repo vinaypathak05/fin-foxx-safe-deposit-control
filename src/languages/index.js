@@ -219,9 +219,9 @@ const LocaleStrings = new LocalizedStrings({
     customers_approve_form_success:
       "Agent approval status updated successfully.!",
 
-    customer_detail_text_ongoing_plans: "Ongoing Plans",
-    customer_detail_text_completed_plans: "Completed Plans",
-    customer_detail_text_reward_plans: "Pending Reward",
+    customer_detail_text_ongoing_plans: "Ongoing",
+    customer_detail_text_completed_plans: "Completed",
+    customer_detail_text_reward_plans: "Pending",
     customer_detail_text_plan_details: "Plan Details",
     customer_detail_text_transaction_history: "Statement",
     customer_detail_text_plan_amount: "Plan Amount",

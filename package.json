@@ -22,7 +22,7 @@
   "bugs": {
     "url": "https://github.com/creativetimofficial/argon-dashboard-react/issues"
   },
-  "homepage": "http://payinsure.in/control/",
+  "homepage": "http://payinsure.in/controldev/",
   "scripts": {
     "start": "cross-env NODE_PATH=./src react-scripts start",
     "build": "react-scripts build",

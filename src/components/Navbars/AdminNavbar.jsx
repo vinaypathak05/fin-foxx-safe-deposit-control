@@ -1,6 +1,6 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import {connect} from "react-redux";
+import { connect } from "react-redux";
 
 // reactstrap components
 import {
@@ -17,17 +17,16 @@ import {
   Navbar,
   Nav,
   Container,
-  Media
+  Media,
 } from "reactstrap";
 
-import LocaleStrings from '../../languages';
-import {logout} from '../action';
+import LocaleStrings from "../../languages";
+import { logout } from "../action";
 
 class AdminNavbar extends Component {
-
   onLogoutClicked = () => {
     this.props.logout(this.props.session);
-  }
+  };
 
   render() {
     return (
@@ -71,7 +70,9 @@ class AdminNavbar extends Component {
                 </DropdownToggle>
                 <DropdownMenu className="dropdown-menu-arrow" right>
                   <DropdownItem className="noti-title" header tag="div">
-                    <h6 className="text-overflow m-0">{LocaleStrings.welcome}!</h6>
+                    <h6 className="text-overflow m-0">
+                      {LocaleStrings.welcome}!
+                    </h6>
                   </DropdownItem>
                   {/* <DropdownItem to="/admin/user-profile" tag={Link}>
                     <i className="ni ni-single-02" />
@@ -106,8 +107,8 @@ class AdminNavbar extends Component {
 
 function mapStateToProps(state) {
   return {
-    session : state.session,
+    session: state.session,
   };
 }
 
-export default connect(mapStateToProps, {logout})(AdminNavbar);
+export default connect(mapStateToProps, { logout })(AdminNavbar);

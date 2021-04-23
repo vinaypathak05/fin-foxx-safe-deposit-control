@@ -91,27 +91,27 @@ class CustomerPlans extends Component {
             </CardHeader>
             {selectedCustomer.details ? (
               <Tabs
-                className="mt-0"
+                className="mt-0 cutomer-plan-tabs"
                 id="customer-plans-details"
                 activeKey={selectedTab}
                 onSelect={this.handleSelect}
               >
                 <Tab
-                  className="p-2"
+                  className="p-1"
                   eventKey={1}
                   title={LocaleStrings.customer_detail_text_ongoing_plans}
                 >
                   {this.renderList("ongoing")}
                 </Tab>
                 <Tab
-                  className="p-2"
+                  className="p-1"
                   eventKey={2}
                   title={LocaleStrings.customer_detail_text_reward_plans}
                 >
                   {this.renderList("cashback")}
                 </Tab>
                 <Tab
-                  className="p-2"
+                  className="p-1"
                   eventKey={3}
                   title={LocaleStrings.customer_detail_text_completed_plans}
                 >

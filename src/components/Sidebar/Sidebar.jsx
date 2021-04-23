@@ -1,5 +1,5 @@
-import React, {Component} from "react";
-import {connect} from "react-redux";
+import React, { Component } from "react";
+import { connect } from "react-redux";
 import _ from "lodash";
 import { NavLink as NavLinkRRD, Link } from "react-router-dom";
 // nodejs library to set properties for components
@@ -33,16 +33,16 @@ import {
   Table,
   Container,
   Row,
-  Col
+  Col,
 } from "reactstrap";
 
-import {logout} from '../action';
-import LocaleStrings from '../../languages';
+import { logout } from "../action";
+import LocaleStrings from "../../languages";
 var ps;
 
 class Sidebar extends Component {
   state = {
-    collapseOpen: false
+    collapseOpen: false,
   };
 
   constructor(props) {
@@ -58,21 +58,23 @@ class Sidebar extends Component {
   // toggles collapse between opened and closed (true/false)
   toggleCollapse = () => {
     this.setState({
-      collapseOpen: !this.state.collapseOpen
+      collapseOpen: !this.state.collapseOpen,
     });
   };
 
   // closes the collapse
   closeCollapse = () => {
     this.setState({
-      collapseOpen: false
+      collapseOpen: false,
     });
   };
 
   // creates the links that appear in the left menu / Sidebar
-  createLinks = routes => {
-    var routesNew = _.filter(routes, function(list) { return list.display }); // custom check is login not display in sidebar
-    
+  createLinks = (routes) => {
+    var routesNew = _.filter(routes, function (list) {
+      return list.display;
+    }); // custom check is login not display in sidebar
+
     return routesNew.map((prop, key) => {
       return (
         <NavItem key={key}>
@@ -92,7 +94,7 @@ class Sidebar extends Component {
 
   onLogoutClicked = () => {
     this.props.logout(this.props.session);
-  }
+  };
 
   render() {
     const { bgColor, routes, logo } = this.props;
@@ -100,12 +102,12 @@ class Sidebar extends Component {
     if (logo && logo.innerLink) {
       navbarBrandProps = {
         to: logo.innerLink,
-        tag: Link
+        tag: Link,
       };
     } else if (logo && logo.outterLink) {
       navbarBrandProps = {
         href: logo.outterLink,
-        target: "_blank"
+        target: "_blank",
       };
     }
     return (
@@ -163,7 +165,9 @@ class Sidebar extends Component {
               </DropdownToggle>
               <DropdownMenu className="dropdown-menu-arrow" right>
                 <DropdownItem className="noti-title" header tag="div">
-                  <h6 className="text-overflow m-0">{LocaleStrings.welcome}!</h6>
+                  <h6 className="text-overflow m-0">
+                    {LocaleStrings.welcome}!
+                  </h6>
                 </DropdownItem>
                 {/* <DropdownItem to="/admin/user-profile" tag={Link}>
                   <i className="ni ni-single-02" />
@@ -245,7 +249,7 @@ class Sidebar extends Component {
 }
 
 Sidebar.defaultProps = {
-  routes: [{}]
+  routes: [{}],
 };
 
 Sidebar.propTypes = {
@@ -261,15 +265,15 @@ Sidebar.propTypes = {
     // the image src of the logo
     imgSrc: PropTypes.string.isRequired,
     // the alt for the img
-    imgAlt: PropTypes.string.isRequired
-  })
+    imgAlt: PropTypes.string.isRequired,
+  }),
 };
 
 function mapStateToProps(state) {
   return {
-    session : state.session,
+    session: state.session,
   };
 }
 
 // export default Sidebar;
-export default connect(mapStateToProps, {logout})(Sidebar);
+export default connect(mapStateToProps, { logout })(Sidebar);

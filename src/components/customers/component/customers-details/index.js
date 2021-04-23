@@ -60,17 +60,17 @@ class CustomerDetails extends Component {
     return (
       <>
         <Header />
-        <div className="mt--7 mr-5 ml-5">
+        <div className="mt--7 container-fluid">
           <Row>
             <div className="col">
               <Card className="shadow mb-5">
-                <CardBody>
-                  <CustomerBasicDetails selectedCustomer={selectedCustomer} />
-                  <hr />
-                  <CustomerOtherInfo />
-                  <hr />
-                  <CustomerPlans selectedCustomer={selectedCustomer} />
-                </CardBody>
+                {/* <CardBody> */}
+                <CustomerBasicDetails selectedCustomer={selectedCustomer} />
+                <hr />
+                <CustomerOtherInfo />
+                <hr />
+                <CustomerPlans selectedCustomer={selectedCustomer} />
+                {/* </CardBody> */}
               </Card>
             </div>
           </Row>
