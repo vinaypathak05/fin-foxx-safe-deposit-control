@@ -558,12 +558,12 @@ class KYCFileUpload extends BaseComponent {
               requiredSize={
                 item.key === "userpic"
                   ? { width: 200, height: 200 }
-                  : { width: 350, height: 200 }
+                  : { width: 450, height: 300 }
               } // For image size required validation
               cropperSize={
                 item.key === "userpic"
-                  ? { width: 100, height: 100 }
-                  : { width: 300, height: 150 }
+                  ? { width: 120, height: 120 }
+                  : { width: 400, height: 250 }
               } // Cropper display size. Note its add 50px for padding
               onImageSave={this.onFilesDrop.bind(this, index)}
               onImageChange={this.onFileAvailable}
@@ -587,7 +587,7 @@ class KYCFileUpload extends BaseComponent {
               insideText={
                 item.key === "userpic"
                   ? "Drag and Drop or Click here to upload image. Image size must be 200x200 px."
-                  : "Drag and Drop or Click here to upload image. Image size must be 350x200 px."
+                  : "Drag and Drop or Click here to upload image. Image size must be 450x300 px."
               }
             />
             <Field

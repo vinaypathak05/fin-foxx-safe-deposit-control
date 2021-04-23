@@ -15,14 +15,14 @@ export default function ImageCropper(props) {
   } = props;
   var [canvasRecource, setCanvasRecource] = useState(props.canvasRecource);
   var [imageUrl, setImagepath] = useState(props.imagepath);
-  var [scale, setScale] = useState(1.2);
+  var [scale, setScale] = useState(1);
   var [imageErrorMsg, setImageErrorMsg] = useState("");
 
   var imageErrorClsName = "alert-danger";
   var scaleStep = 0.05;
-  var defaultScale = 1.2;
+  var defaultScale = 1;
   var minScale = 1;
-  var maxScale = 2;
+  var maxScale = 1.2;
   var editor = "";
 
   // This function is added by vinay as it requires in course cover image display on 29/12/2020. I have tested others component where this component is import, not any issue found. if in future any issue occures then need to change this function.
