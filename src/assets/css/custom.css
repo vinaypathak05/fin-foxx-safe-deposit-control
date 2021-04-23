@@ -1,5 +1,5 @@
 :root {
-  --theme-color: #1665d8;
+  --theme-color: #2676ea;
   --input-border: 1px solid #e6edf3;
 }
 /* Custom buttons start */
@@ -66,6 +66,9 @@
 }
 /* Custom buttons end */
 /* Static text start */
+.theme-color-text {
+  color: var(--theme-color) !important;
+}
 .custom-text3-normal {
   font-size: 0.88rem;
   font-weight: 400;
@@ -192,7 +195,7 @@ hr {
 }
 /* When the radio button is checked, add a blue background */
 .custom-container-radio input:checked ~ .radiomark {
-  background-color: #1665d8;
+  background-color: var(--theme-color);
 }
 /* Create the indicator (the dot/circle - hidden when not checked) */
 .radiomark:after {
@@ -224,7 +227,7 @@ hr {
 .content-files-dropbox {
   padding: 10px;
   text-align: center;
-  border: 1px dashed #2676ea;
+  border: 1px dashed var(--theme-color);
   border-radius: 5px;
   background: white;
   margin-bottom: 10px;
@@ -234,10 +237,10 @@ hr {
   padding-top: 0.625rem;
 }
 .steps-icon-arrow .circle-up {
-  color: #2676ea;
+  color: var(--theme-color);
 }
 .steps-icon-arrow .updown-icon:hover {
-  color: #2676ea;
+  color: var(--theme-color);
 }
 .img-responsive {
   border-radius: 5px;

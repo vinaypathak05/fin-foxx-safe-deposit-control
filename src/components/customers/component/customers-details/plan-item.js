@@ -14,6 +14,7 @@ import { converDateIntoLocalDate } from "../../../Common/constant";
 import CustomerPayments from "./customer-payments";
 import LocaleStrings from "../../../../languages";
 import Loader from "../../../Common/loader";
+import CheckMark from "../../../../assets/img/icons/checkmark-circle-fill.png";
 
 class PlanList extends Component {
   constructor(props) {
@@ -72,55 +73,79 @@ class PlanList extends Component {
 
   render() {
     let { printList, openCurrentPlan, plantype } = this.props;
+    let catNameStyle = {
+      position: "relative",
+      right: 91,
+      bottom: -2,
+      // color: "white",
+    };
 
     return (
       <Card className="shadow p-3 mb-2">
         <Row>
           <Col md={12}>
-            <h2>{printList.planname}</h2>
+            <div className="d-flex">
+              <h2 className="mr-3">{printList.planname}</h2>
+              <svg xmlns="http://www.w3.org/2000/svg" width="97" height="29">
+                <path
+                  fill="#f8e71c"
+                  fill-rule="evenodd"
+                  d="M88.362 12.578c-1.049 1.061-1.049 2.783 0 3.845l7.845 7.936c1.693 1.713.494 4.641-1.9 4.641H5c-2.761 0-5-2.239-5-5V5c0-2.761 2.239-5 5-5h89.307c2.394 0 3.593 2.928 1.9 4.641l-7.845 7.937z"
+                />
+              </svg>
+              <span style={catNameStyle}>{printList.customerplancode}</span>
+            </div>
           </Col>
           <Col md={4}>
             <div>
-              <span>
+              <span className="text-xs">
+                <img className="mr-1" alt="" src={CheckMark} />
                 {LocaleStrings.customer_detail_text_plan_amount + ": "}
               </span>
-              <span className="font-weight-bold">{printList.planamount}</span>
-            </div>
-            <div className="text-capitalize">
-              <span>{LocaleStrings.customer_detail_text_plan_mode + ": "}</span>
-              <span className="font-weight-bold">{printList.paymentmode}</span>
+              <span className="fa-md">{printList.planamount}</span>
             </div>
             <div>
-              <span>
+              <span className="text-xs">
+                <img className="mr-1" alt="" src={CheckMark} />
+                {LocaleStrings.customer_detail_text_plan_mode + ": "}
+              </span>
+              <span className="text-capitalize fa-md">
+                {printList.paymentmode}
+              </span>
+            </div>
+            <div>
+              <span className="text-xs">
+                <img className="mr-1" alt="" src={CheckMark} />
                 {LocaleStrings.customer_detail_text_paid_till_date + ": "}
               </span>
-              <span className="font-weight-bold">{printList.paidtilldate}</span>
+              <span className="fa-md">{printList.paidtilldate}</span>
             </div>
           </Col>
           <Col md={4}>
             <div>
-              <span>
+              <span className="text-xs">
+                <img className="mr-1" alt="" src={CheckMark} />
                 {LocaleStrings.customer_detail_text_plan_valid_from + ": "}
               </span>
-              <span className="font-weight-bold">
+              <span className="fa-md">
                 {moment(printList.planactivatedate).format("DD-MM-YYYY")}
               </span>
             </div>
             <div>
-              <span>
+              <span className="text-xs">
+                <img className="mr-1" alt="" src={CheckMark} />
                 {LocaleStrings.customer_detail_text_plan_valid_to + ": "}
               </span>
-              <span className="font-weight-bold">
+              <span className="fa-md">
                 {moment(printList.planexpirydate).format("DD-MM-YYYY")}
               </span>
             </div>
             <div>
-              <span>
+              <span className="text-xs">
+                <img className="mr-1" alt="" src={CheckMark} />
                 {LocaleStrings.customer_detail_text_payment_left + ": "}
               </span>
-              <span className="font-weight-bold">
-                {printList.planleftamount}
-              </span>
+              <span className="fa-md">{printList.planleftamount}</span>
             </div>
           </Col>
           <Col md={4} className="text-right">
