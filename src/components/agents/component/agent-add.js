@@ -12,10 +12,16 @@ import {
   validatePhoneNumbers,
   BASE_IMAGES_URL,
 } from "../../Common/constant";
-import { openAgentCreateModal, agentKycFiles, addAgent } from "../action";
+import {
+  openAgentCreateModal,
+  agentKycFiles,
+  addAgent,
+  editAgentSave,
+} from "../action";
 import { showSuccess, showError } from "../../Common/errorbar";
 import LocaleStrings from "../../../languages";
 import ImagesDrop from "../../Common/image-upload";
+import ImageCropper from "../../Common/uploader-image-cropper";
 import UploadIcon from "../../../assets/img/icons/picture.png";
 
 class AddAgent extends Component {
@@ -38,11 +44,32 @@ class AddAgent extends Component {
     let { editMode, session } = this.props;
     // console.log('Values: -', values)
 
+    this.setState({ loading: true });
     if (!editMode) {
-      this.setState({ loading: true });
       this.props.addAgent(session, values, (response) => {
         if (response.success == 1) {
           this.props.showSuccess(LocaleStrings.agents_add_form_success);
+          this.props.finishOperationsCallback();
+          this.closeModal();
+        } else if (response.success == 2) {
+          this.setState({ loading: false });
+          let message = COMMON_FAIL_MESSAGE;
+          if (response.data.email != "") {
+            message = response.data.email;
+          } else if (response.data.mobile != "") {
+            message = response.data.mobile;
+          }
+
+          this.props.showError(message);
+        } else {
+          this.setState({ loading: false });
+          this.props.showError(COMMON_FAIL_MESSAGE);
+        }
+      });
+    } else {
+      this.props.editAgentSave(session, values, (response) => {
+        if (response.success == 1) {
+          this.props.showSuccess(LocaleStrings.agents_edit_form_success);
           this.props.finishOperationsCallback();
           this.closeModal();
         } else if (response.success == 2) {
@@ -75,6 +102,7 @@ class AddAgent extends Component {
     } = this.props;
     var edit = editMode;
     let spinner = this.state.loading ? "fas fa-spinner fa-pulse" : "";
+    let disabled = this.state.loading ? true : false;
 
     return (
       <Modal className="" isOpen={modalStatus.showModal == true ? true : false}>
@@ -102,8 +130,8 @@ class AddAgent extends Component {
         >
           <div className="modal-body">
             <Tabs
-              className="branding-tabs mt-0"
-              id="speaker-from-tab"
+              className="mt-0"
+              id="agent-from-tab"
               activeKey={this.state.selectedTab}
               onSelect={this.handleSelect}
             >
@@ -137,7 +165,7 @@ class AddAgent extends Component {
             <Button
               color="primary"
               type="submit"
-              disabled={pristine || invalid || submitting}
+              disabled={pristine || invalid || submitting || disabled}
             >
               <i className={spinner} aria-hidden="true"></i>{" "}
               {LocaleStrings.button_save}
@@ -149,7 +177,7 @@ class AddAgent extends Component {
   }
 }
 
-function validate(values) {
+function validate(values, ownProps) {
   // console.log('values : - ', values)
   let errors = {};
   var firstname = values["firstname"];
@@ -182,7 +210,7 @@ function validate(values) {
   if (mobile && !validatePhoneNumbers(mobile)) {
     errors["mobile"] = LocaleStrings.agents_validation_invalid_mobile_number;
   }
-  if (!password || password.trim() === "") {
+  if ((!password || password.trim() === "") && !ownProps.editMode) {
     errors["password"] = LocaleStrings.required;
   }
   if (password && password.trim().length < 8) {
@@ -199,12 +227,23 @@ function validate(values) {
     errors["aadhaarbackpic"] = LocaleStrings.required;
   }
 
+  _.map(ownProps.uploadedAgentKycFiles, (form, index) => {
+    var formKey = form.key;
+    if (!values[formKey] || values[formKey].trim() === "") {
+      errors[formKey] = LocaleStrings.required;
+    }
+  });
+
   return errors;
 }
 
 function mapStateToProps(state) {
-  var edit = false;
+  // var edit = false;
+  var edit = !_.isEmpty(state.editAgent);
   var initVals = {};
+  if (edit) {
+    initVals = state.editAgent;
+  }
 
   return {
     session: state.session,
@@ -216,11 +255,12 @@ function mapStateToProps(state) {
 }
 
 export default connect(mapStateToProps, {
+  showSuccess,
+  showError,
   openAgentCreateModal,
   agentKycFiles,
   addAgent,
-  showSuccess,
-  showError,
+  editAgentSave,
 })(
   reduxForm({
     validate,
@@ -238,6 +278,8 @@ class AgentForm extends BaseComponent {
   componentDidMount() {}
 
   render() {
+    let { editMode } = this.props;
+
     return (
       <div>
         <Field
@@ -282,7 +324,7 @@ class AgentForm extends BaseComponent {
           placeholder={LocaleStrings.agents_add_form_ph_password}
           type="password"
           component={this.renderFieldText}
-          mandatory="true"
+          mandatory={editMode ? "false" : "true"}
           labelposition={LABEL_POSITION_TOP}
         />
       </div>
@@ -354,15 +396,15 @@ class KYCFileUpload extends BaseComponent {
     // console.log('index :- ', index)
     // console.log('uploadedAgentKycFiles :- ', uploadedAgentKycFiles)
 
-    uploadedAgentKycFiles[index].file = files.file ? files.file : "";
-    uploadedAgentKycFiles[index].filename = files.filename
-      ? files.filename
+    uploadedAgentKycFiles[index].file = files ? files : "";
+    uploadedAgentKycFiles[index].filename = files
+      ? `${uploadedAgentKycFiles[index].key}.png`
       : "";
 
     // console.log('uploadedAgentKycFiles : - ', uploadedAgentKycFiles)
     this.props.agentKycFiles(uploadedAgentKycFiles);
 
-    this.props.autofill(uploadedAgentKycFiles[index].key, files.file);
+    this.props.autofill(uploadedAgentKycFiles[index].key, files);
   };
 
   onFileAvailable = (available) => {
@@ -392,48 +434,64 @@ class KYCFileUpload extends BaseComponent {
       }
 
       return (
-        <>
-          <ImagesDrop
-            key={`key-${index}`}
-            label={item.label}
-            width={350}
-            height="auto"
-            onFileSave={this.onFilesDrop.bind(this, index)}
-            filepath={filePreview}
-            onFileChnageLocally={this.onFileAvailable}
-            fileName={fileName}
-            fileOld={fileOld}
-            className="content-files-dropbox"
-            innerText={
-              <div className="content-files-drop-text">
-                <div>
-                  <img src={`${UploadIcon}`} />
-                </div>
-                <div>
-                  {LocaleStrings.drag_and_drop} <br />
-                  {LocaleStrings.or}{" "}
-                  <span className="select-file">
-                    {LocaleStrings.select_file}
-                  </span>
-                </div>
-              </div>
-            }
-          />
-          <Field
-            name={item.key}
-            type="text"
-            component={this.renderHiddenFieldTextShowError}
-          />
-        </>
+        <div className="row m-0" key={`key-${index}`}>
+          <label className="col-md-12 p-0 custom-label">{item.label}</label>
+          <div className="col-md-12 p-0">
+            <ImageCropper
+              displaySize={
+                item.key === "agentpic"
+                  ? { width: 170, height: 170 }
+                  : { width: 350, height: 200 }
+              } // For image display style
+              requiredSize={
+                item.key === "agentpic"
+                  ? { width: 200, height: 200 }
+                  : { width: 350, height: 200 }
+              } // For image size required validation
+              cropperSize={
+                item.key === "agentpic"
+                  ? { width: 100, height: 100 }
+                  : { width: 300, height: 150 }
+              } // Cropper display size. Note its add 50px for padding
+              onImageSave={this.onFilesDrop.bind(this, index)}
+              onImageChange={this.onFileAvailable}
+              imagepath={filePreview}
+              imageType="jpg"
+              className="drop-zone-area-custom-image"
+              insideImage={UploadIcon}
+              insideImageStyle={
+                item.key === "agentpic"
+                  ? {
+                      width: 25,
+                      height: 25,
+                      margin: "25px 0px 5px",
+                    }
+                  : {
+                      width: 25,
+                      height: 25,
+                      margin: "50px 0px 5px",
+                    }
+              }
+              insideText={
+                item.key === "agentpic"
+                  ? "Drag and Drop or Click here to upload image. Image size must be 200x200 px."
+                  : "Drag and Drop or Click here to upload image. Image size must be 350x200 px."
+              }
+            />
+            <Field
+              name={item.key}
+              type="text"
+              component={this.renderHiddenFieldTextShowError}
+            />
+          </div>
+        </div>
       );
     });
   };
 
   render() {
     return (
-      <div className="dashboard-inside-container">
-        <div className="row">{this.otherFiles()}</div>
-      </div>
+      <div className="dashboard-inside-container">{this.otherFiles()}</div>
     );
   }
 }

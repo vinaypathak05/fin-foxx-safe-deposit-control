@@ -12,6 +12,9 @@ import {
   activateDeactivateAgent,
   deleteAgent,
   selectedAgentDetails,
+  agentKycFiles,
+  openAgentCreateModal,
+  editAgents,
 } from "../action";
 import { showSuccess, showError } from "../../Common/errorbar";
 import { COMMON_FAIL_MESSAGE } from "../../Common/constant";
@@ -33,6 +36,57 @@ class AgentsList extends Component {
       pathname: "/admin/agent/" + this.props.printList.agentid,
       state: { selected: this.props.printList },
     });
+  };
+
+  edit = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+
+    let { printList } = this.props;
+    var agentpic = printList.agentpic
+      ? printList.agentpic.split("/").pop()
+      : "";
+    var aadhaarfrontpic = printList.aadhaarfrontpic
+      ? printList.aadhaarfrontpic.split("/").pop()
+      : "";
+    var aadhaarbackpic = printList.aadhaarbackpic
+      ? printList.aadhaarbackpic.split("/").pop()
+      : "";
+    var pancardpic = printList.pancardpic
+      ? printList.pancardpic.split("/").pop()
+      : "";
+
+    var files = [
+      {
+        label: LocaleStrings.agents_add_form_label_profile,
+        key: "agentpic",
+        file: printList.agentpic ? printList.agentpic : "",
+        filename: agentpic ? agentpic : "",
+      },
+      {
+        label: LocaleStrings.agents_add_form_label_aadhaarfront,
+        key: "aadhaarfrontpic",
+        file: printList.aadhaarfrontpic ? printList.aadhaarfrontpic : "",
+        filename: aadhaarfrontpic ? aadhaarfrontpic : "",
+      },
+      {
+        label: LocaleStrings.agents_add_form_label_aadhaarback,
+        key: "aadhaarbackpic",
+        file: printList.aadhaarbackpic ? printList.aadhaarbackpic : "",
+        filename: aadhaarbackpic ? aadhaarbackpic : "",
+      },
+      {
+        label: LocaleStrings.agents_add_form_label_pancard,
+        key: "pancardpic",
+        file: printList.pancardpic ? printList.pancardpic : "",
+        filename: pancardpic ? pancardpic : "",
+      },
+    ];
+
+    // console.log("files :- ", files);
+    this.props.agentKycFiles(files);
+    this.props.openAgentCreateModal({ showModal: true });
+    this.props.editAgents(printList);
   };
 
   approveAction = (e) => {
@@ -109,6 +163,9 @@ class AgentsList extends Component {
                 <i className="fas fa-ellipsis-v" />
               </DropdownToggle>
               <DropdownMenu className="dropdown-menu-arrow" right>
+                <DropdownItem onClick={this.edit}>
+                  {LocaleStrings.button_edit}
+                </DropdownItem>
                 {printList.status == "active" &&
                 (printList.approvalstatus == "submitted" ||
                   printList.approvalstatus == "onhold") ? (
@@ -151,10 +208,13 @@ export var mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps, {
+  showSuccess,
+  showError,
   openAgentApproveModal,
   activateDeactivateAgent,
   deleteAgent,
   selectedAgentDetails,
-  showSuccess,
-  showError,
+  agentKycFiles,
+  openAgentCreateModal,
+  editAgents,
 })(AgentsList);

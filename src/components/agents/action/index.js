@@ -9,6 +9,7 @@ import { BASE_URL, itemCount } from "../../Common/constant";
 export const ALL_AGENTS_LISTS = "ALL_AGENTS_LISTS";
 export const AGENTS_LISTS = "AGENTS_LISTS";
 export const AGENTS_CREATE_MODAL = "AGENTS_CREATE_MODAL";
+export const EDIT_AGENT = "EDIT_AGENT";
 export const UPDATE_AGENTS_KYC_FILES = "UPDATE_AGENTS_KYC_FILES";
 export const AGENTS_APPROVE_MODAL = "AGENTS_APPROVE_MODAL";
 export const SELECTED_AGENT = "SELECTED_AGENT";
@@ -115,6 +116,41 @@ export function agentKycFiles(files) {
 
 export function addAgent(session, values, callback) {
   var url = `${BASE_URL}/api/addagent`;
+  var body = new URLSearchParams(values);
+  // console.log('body : - ', body)
+
+  return (dispatch) => {
+    postMultipartRequest(
+      url,
+      body,
+      session,
+      dispatch,
+      (response) => {
+        // console.log('response : - ', response)
+
+        if (response.success == 1) {
+          callback({ success: 1, data: response.resource });
+        } else if (response.success == 2) {
+          callback({ success: 2, data: response.resource });
+        } else {
+          callback({ success: 0 });
+        }
+      },
+      (error) => {
+        // callback({success: 0, error: error});
+      }
+    );
+  };
+}
+
+export function editAgents(obj) {
+  return (dispatch) => {
+    dispatch({ type: EDIT_AGENT, payload: obj });
+  };
+}
+
+export function editAgentSave(session, values, callback) {
+  var url = `${BASE_URL}/api/editagent`;
   var body = new URLSearchParams(values);
   // console.log('body : - ', body)
 

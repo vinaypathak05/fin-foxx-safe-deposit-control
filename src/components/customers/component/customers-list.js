@@ -35,10 +35,16 @@ class CustomersList extends Component {
 
     let { printList } = this.props;
     // upload/customers_kyc/102/userpic.png
-    var userpic = printList.userpic.split("/").pop();
-    var aadhaarfrontpic = printList.aadhaarfrontpic.split("/").pop();
-    var aadhaarbackpic = printList.aadhaarbackpic.split("/").pop();
-    var bankdetailspic = printList.bankdetailspic.split("/").pop();
+    var userpic = printList.userpic ? printList.userpic.split("/").pop() : "";
+    var aadhaarfrontpic = printList.aadhaarfrontpic
+      ? printList.aadhaarfrontpic.split("/").pop()
+      : "";
+    var aadhaarbackpic = printList.aadhaarbackpic
+      ? printList.aadhaarbackpic.split("/").pop()
+      : "";
+    var bankdetailspic = printList.bankdetailspic
+      ? printList.bankdetailspic.split("/").pop()
+      : "";
 
     var files = [
       {

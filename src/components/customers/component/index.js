@@ -17,6 +17,7 @@ import {
   searchCustomers,
   openCustomerCreateModal,
   customerKycFiles,
+  editCustomer,
 } from "../action";
 import { fetchAllAgents } from "../../agents/action";
 import RenderList from "./customers-list";
@@ -65,6 +66,7 @@ class Customers extends Component {
 
     this.props.customerKycFiles(files);
     this.props.openCustomerCreateModal({ showModal: true });
+    this.props.editCustomer({});
   };
 
   additionalCallback = () => {
@@ -274,4 +276,5 @@ export default connect(mapStateToProps, {
   openCustomerCreateModal,
   customerKycFiles,
   fetchAllAgents,
+  editCustomer,
 })(Customers);

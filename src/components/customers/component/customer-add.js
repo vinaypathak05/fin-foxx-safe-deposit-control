@@ -48,7 +48,7 @@ class AddCustomer extends Component {
     if (!editMode) {
       this.props.addCustomer(session, values, (response) => {
         if (response.success == 1) {
-          this.props.showSuccess(LocaleStrings.agents_add_form_success);
+          this.props.showSuccess(LocaleStrings.customers_add_form_success);
           this.props.finishOperationsCallback();
           this.closeModal();
         } else if (response.success == 2) {
@@ -79,7 +79,7 @@ class AddCustomer extends Component {
     } else {
       this.props.editCustomerSave(session, values, (response) => {
         if (response.success == 1) {
-          this.props.showSuccess(LocaleStrings.agents_edit_form_success);
+          this.props.showSuccess(LocaleStrings.customers_edit_form_success);
           this.props.finishOperationsCallback();
           this.closeModal();
         } else if (response.success == 2) {

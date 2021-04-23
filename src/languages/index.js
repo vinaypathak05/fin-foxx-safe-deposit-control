@@ -107,6 +107,10 @@ const LocaleStrings = new LocalizedStrings({
     agents_add_form_ph_bank_branch: "Enter your bank branch name",
     agents_add_form_label_ifsc: "Ifsc Code",
     agents_add_form_ph_ifsc: "Enter your bank ifsc code",
+    agents_add_form_label_profile: "Profile Photo",
+    agents_add_form_label_aadhaarfront: "Aadhaar Front Photo",
+    agents_add_form_label_aadhaarback: "Aadhar Back Photo",
+    agents_add_form_label_pancard: "Pancard Photo",
     agents_validation_invalid_email: "Invalid email",
     agents_validation_invalid_mobile_number: "Invalid mobile format",
     agents_validation_invalid_min_password:
@@ -178,6 +182,8 @@ const LocaleStrings = new LocalizedStrings({
     customers_add_form_label_pin: "Pincode",
     customers_add_form_ph_pin: "Enter pincode",
     customers_validation_invalid_aadhaar_number: "Invalid aadhaar format",
+    customers_add_form_success: "Customer added successfully.!",
+    customers_edit_form_success: "Customer updated successfully.!",
 
     customers_payment_received_text_agent_wallet: "Agent wallet amount",
     customers_payment_received_madal_title: "Collect Payment",

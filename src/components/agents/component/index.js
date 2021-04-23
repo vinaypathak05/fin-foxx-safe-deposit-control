@@ -18,6 +18,7 @@ import {
   openAgentCreateModal,
   agentKycFiles,
   selectedAgentDetails,
+  editAgents,
 } from "../action";
 import RenderList from "./agents-list";
 import CreateNew from "./agent-add";
@@ -41,16 +42,27 @@ class Agents extends Component {
 
   openModal = () => {
     var files = [
-      { label: "Profile Photo", key: "agentpic", file: "", filename: "" },
       {
-        label: "Aadhaar Front Photo",
+        label: LocaleStrings.agents_add_form_label_profile,
+        key: "agentpic",
+        file: "",
+        filename: "",
+      },
+      {
+        label: LocaleStrings.agents_add_form_label_aadhaarfront,
         key: "aadhaarfrontpic",
         file: "",
         filename: "",
       },
       {
-        label: "Aadhar Back Photo",
+        label: LocaleStrings.agents_add_form_label_aadhaarback,
         key: "aadhaarbackpic",
+        file: "",
+        filename: "",
+      },
+      {
+        label: LocaleStrings.agents_add_form_label_pancard,
+        key: "pancardpic",
         file: "",
         filename: "",
       },
@@ -58,6 +70,7 @@ class Agents extends Component {
 
     this.props.agentKycFiles(files);
     this.props.openAgentCreateModal({ showModal: true });
+    this.props.editAgents({});
   };
 
   additionalCallback = () => {
@@ -240,4 +253,5 @@ export default connect(mapStateToProps, {
   openAgentCreateModal,
   agentKycFiles,
   selectedAgentDetails,
+  editAgents,
 })(Agents);
