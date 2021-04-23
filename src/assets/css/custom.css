@@ -264,7 +264,40 @@ hr {
 }
 
 @media (max-width: 425px) {
+  .customer-add-tabs .nav-item {
+    font-size: 12px;
+  }
   .cutomer-plan-tabs .nav-item {
     font-size: 12px;
+  }
+  .agent-from-tab .nav-item {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 375px) {
+  .customer-kyc-section .aadhaarfrontpic .image-section {
+    width: 260px !important;
+    height: 155px !important;
+  }
+  .customer-kyc-section .aadhaarbackpic .image-section {
+    width: 260px !important;
+    height: 155px !important;
+  }
+  .customer-kyc-section .bankdetailspic .image-section {
+    width: 260px !important;
+    height: 155px !important;
+  }
+  .agent-kyc-section .aadhaarfrontpic .image-section {
+    width: 260px !important;
+    height: 155px !important;
+  }
+  .agent-kyc-section .aadhaarbackpic .image-section {
+    width: 260px !important;
+    height: 155px !important;
+  }
+  .agent-kyc-section .pancardpic .image-section {
+    width: 260px !important;
+    height: 155px !important;
   }
 }

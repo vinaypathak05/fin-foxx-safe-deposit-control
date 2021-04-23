@@ -150,7 +150,7 @@ class AddCustomer extends Component {
         >
           <div className="modal-body">
             <Tabs
-              className="branding-tabs mt-0"
+              className="customer-add-tabs mt-0"
               id="customer-tab"
               activeKey={this.state.selectedTab}
               onSelect={this.handleSelect}
@@ -546,7 +546,7 @@ class KYCFileUpload extends BaseComponent {
       }
 
       return (
-        <div className="row m-0" key={`key-${index}`}>
+        <div className={`${item.key} row m-0`} key={`key-${index}`}>
           <label className="col-md-12 p-0 custom-label">{item.label}</label>
           <div className="col-md-12 p-0">
             <ImageCropper
@@ -602,8 +602,6 @@ class KYCFileUpload extends BaseComponent {
   };
 
   render() {
-    return (
-      <div className="dashboard-inside-container">{this.otherFiles()}</div>
-    );
+    return <div className="customer-kyc-section">{this.otherFiles()}</div>;
   }
 }
