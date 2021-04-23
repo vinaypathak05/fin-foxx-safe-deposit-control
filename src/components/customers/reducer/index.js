@@ -1,6 +1,7 @@
 import {
   CUSTOMERS_LISTS,
   CUSTOMER_CREATE_MODEL,
+  EDIT_CUSTOMER,
   UPDATE_CUSTOMER_KYC_FILES,
   CUSTOMER_PAYMENT_MODEL,
   CUSTOMER_REWARD_MODEL,
@@ -21,6 +22,13 @@ export function customersList(state = {}, action) {
 
 export function customerCreateModal(state = {}, action) {
   if (action.type === CUSTOMER_CREATE_MODEL) {
+    return action.payload;
+  }
+  return state;
+}
+
+export function editCustomer(state = {}, action) {
+  if (action.type === EDIT_CUSTOMER) {
     return action.payload;
   }
   return state;

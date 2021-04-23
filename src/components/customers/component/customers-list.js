@@ -11,6 +11,9 @@ import {
   activateDeactivateCustomer,
   // openCustomerPaymentModal,
   openCustomerApproveModal,
+  editCustomer,
+  openCustomerCreateModal,
+  customerKycFiles,
 } from "../action";
 import { showSuccess, showError } from "../../Common/errorbar";
 import { COMMON_FAIL_MESSAGE } from "../../Common/constant";
@@ -24,6 +27,49 @@ class CustomersList extends Component {
   preventClick = (e) => {
     e.preventDefault();
     e.stopPropagation();
+  };
+
+  edit = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+
+    let { printList } = this.props;
+    // upload/customers_kyc/102/userpic.png
+    var userpic = printList.userpic.split("/").pop();
+    var aadhaarfrontpic = printList.aadhaarfrontpic.split("/").pop();
+    var aadhaarbackpic = printList.aadhaarbackpic.split("/").pop();
+    var bankdetailspic = printList.bankdetailspic.split("/").pop();
+
+    var files = [
+      {
+        label: "Profile Photo",
+        key: "userpic",
+        file: printList.userpic ? printList.userpic : "",
+        filename: userpic ? userpic : "",
+      },
+      {
+        label: "Aadhaar Front Photo",
+        key: "aadhaarfrontpic",
+        file: printList.aadhaarfrontpic ? printList.aadhaarfrontpic : "",
+        filename: aadhaarfrontpic ? aadhaarfrontpic : "",
+      },
+      {
+        label: "Aadhar Back Photo",
+        key: "aadhaarbackpic",
+        file: printList.aadhaarbackpic ? printList.aadhaarbackpic : "",
+        filename: aadhaarbackpic ? aadhaarbackpic : "",
+      },
+      {
+        label: "Bank Account Photo",
+        key: "bankdetailspic",
+        file: printList.bankdetailspic ? printList.bankdetailspic : "",
+        filename: bankdetailspic ? bankdetailspic : "",
+      },
+    ];
+    // console.log("files :- ", files);
+    this.props.customerKycFiles(files);
+    this.props.openCustomerCreateModal({ showModal: true });
+    this.props.editCustomer(printList);
   };
 
   openRowDetails = (e) => {
@@ -96,6 +142,9 @@ class CustomersList extends Component {
               <i className="fas fa-ellipsis-v" />
             </DropdownToggle>
             <DropdownMenu className="dropdown-menu-arrow" right>
+              <DropdownItem onClick={this.edit}>
+                {LocaleStrings.button_edit}
+              </DropdownItem>
               {/* {printList.status === "active" &&
               printList.approvalstatus == "approved" ? (
                 <DropdownItem onClick={this.collectAmount}>
@@ -138,9 +187,12 @@ export var mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps, {
+  showSuccess,
+  showError,
   activateDeactivateCustomer,
   // openCustomerPaymentModal,
   openCustomerApproveModal,
-  showSuccess,
-  showError,
+  editCustomer,
+  openCustomerCreateModal,
+  customerKycFiles,
 })(CustomersList);

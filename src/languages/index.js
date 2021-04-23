@@ -34,6 +34,7 @@ const LocaleStrings = new LocalizedStrings({
     button_add_new: "Add New",
     button_edit: "Edit",
     button_delete: "Delete",
+    button_remove: "Remove",
     button_update: "Update",
     button_activate: "Activate",
     button_deactivate: "Deactivate",
@@ -57,6 +58,8 @@ const LocaleStrings = new LocalizedStrings({
     button_upload_new_file: "Upload New File",
     button_view_kyc: "View KYC",
     button_new_plan: "New Plan",
+    button_upload_new_image: "Upload New",
+    button_crop: "Crop",
 
     //Login
     welcome: "Welcome",
@@ -109,6 +112,7 @@ const LocaleStrings = new LocalizedStrings({
     agents_validation_invalid_min_password:
       "Please enter minimum 8 characters password",
     agents_add_form_success: "Agent added successfully.!",
+    agents_edit_form_success: "Agent updated successfully.!",
     agents_approve_madal_title_approve_agent: "Approve Agent",
     agents_approve_label_select: "Select Option",
     agents_approve_label_option1: "Submitted",

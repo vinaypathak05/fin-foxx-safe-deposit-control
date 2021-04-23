@@ -17,6 +17,7 @@ import {
 import {
   customersList,
   customerCreateModal,
+  editCustomer,
   customerKYCFiles,
   customerPaymentReceiveModal,
   customerRewardModal,
@@ -126,6 +127,7 @@ var rootReducer = combineReducers({
   // Customers
   customersList: customersList,
   customerCreateModal: customerCreateModal,
+  editCustomer: editCustomer,
   customerKYCFiles: customerKYCFiles,
   customerPaymentReceiveModal: customerPaymentReceiveModal,
   customerRewardModal: customerRewardModal,

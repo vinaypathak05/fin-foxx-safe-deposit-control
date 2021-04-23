@@ -1,3 +1,76 @@
+:root {
+  --theme-color: #1665d8;
+  --input-border: 1px solid #e6edf3;
+}
+/* Custom buttons start */
+.custom-button-primary-md {
+  height: 2.5rem;
+  background: transparent
+    linear-gradient(0deg, var(--theme-color) 0%, var(--theme-color) 100%) 0% 0%
+    no-repeat padding-box;
+  padding: 0.313rem 0.938rem;
+  border-radius: 0.25rem;
+  border: none;
+  font-size: 0.875rem;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  letter-spacing: normal;
+  color: #ffffff;
+}
+.custom-button-secondary-sm {
+  height: 1.688rem;
+  padding: 0.2rem 0.688rem 0.2rem;
+  border-radius: 0.25rem;
+  border: solid 1px #ffffff;
+  background-color: rgba(0, 0, 0, 0.32);
+  color: #ffffff;
+  font-size: 0.75rem;
+  font-weight: 400;
+  font-stretch: normal;
+  font-style: normal;
+  letter-spacing: normal;
+}
+.custom-icon-button-primary-md {
+  width: 2.5rem;
+  height: 2.5rem;
+  background: transparent
+    linear-gradient(0deg, var(--theme-color) 0%, var(--theme-color) 100%) 0% 0%
+    no-repeat padding-box;
+  border-radius: 0.25rem;
+  border: none;
+  font-size: 0.875rem;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  letter-spacing: normal;
+  color: #ffffff;
+}
+.custom-icon-button-danger-md {
+  width: 2.5rem;
+  height: 2.5rem;
+  background: transparent linear-gradient(0deg, #d43f3a 0%, #d43f3a 100%) 0% 0%
+    no-repeat padding-box;
+  border-radius: 0.25rem;
+  border: none;
+  font-size: 0.875rem;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  letter-spacing: normal;
+  color: #ffffff;
+}
+/* Custom buttons end */
+/* Static text start */
+.custom-text3-normal {
+  font-size: 0.88rem;
+  font-weight: 400;
+  font-stretch: normal;
+  font-style: normal;
+  letter-spacing: normal;
+}
+/* Static text end */
+
 /* React Advance Form Start*/
 .fatWUN {
   /* position: unset!important; */
@@ -5,42 +78,34 @@
   /* flex-wrap: unset!important; */
   /* width: 100%!important */
 }
-
 .sc-EHOje {
   width: 100% !important;
 }
-
 .sc-jTzLTM {
   width: 100% !important;
 }
 /* React Advance Form End*/
-
 .cursor-pointer {
   cursor: pointer;
 }
-
-hr {
-  margin: 0;
-}
-
 .button-vertical-center {
   margin: auto;
   padding-left: 0px;
   padding-right: 0px;
 }
-
+hr {
+  margin: 0;
+}
 .inputsearch {
   background: url(../img/icons/search_icon.png) no-repeat 1% 60% !important;
   padding-left: 30px !important;
   /* height: 30px !important; */
   font-size: 12px !important;
 }
-
 .loaderstyle {
   text-align: center;
   padding: 21px;
 }
-
 .async-select {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
     Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
@@ -48,50 +113,40 @@ hr {
   font-weight: 300;
   color: #757575;
 }
-
 .no-content-message {
   color: #a2a3b1;
   text-align: center;
   padding: 30px;
 }
-
 .min-height-135 {
   min-height: 135px;
 }
-
 .deactivated {
   background-color: #eeefeb;
 }
-
 .deleted {
   background-color: #f3dfdf;
 }
-
 /* Form related */
 .custom-label {
   color: rgb(119, 119, 119);
   font-weight: 300;
 }
-
 /* Feld Error message display */
 .has-danger:after {
   clear: both;
   content: " ";
   background-color: white;
 }
-
 .has-danger .form-control {
   border-color: #f1a188 !important;
 }
-
 .text-help {
   color: #f1a188;
 }
-
 .label-text-help {
   font-size: 12px;
 }
-
 /* Customize the label (the container) */
 .custom-container-radio {
   font-weight: 500;
@@ -107,7 +162,6 @@ hr {
   -ms-user-select: none;
   user-select: none;
 }
-
 /* Hide the browser's default radio button */
 .custom-container-radio input {
   position: absolute;
@@ -116,7 +170,6 @@ hr {
   height: 0;
   width: 0;
 }
-
 /* Create a custom radio button */
 .radiomark {
   position: absolute;
@@ -128,30 +181,25 @@ hr {
   background-color: #ffffff;
   border-radius: 50%;
 }
-
 /* On mouse-over, add a grey background color */
 .custom-container-radio:hover input ~ .radiomark {
   border: solid 1px #dce2e9;
   background-color: #f6f7fb;
 }
-
 /* When the radio button is checked, add a blue background */
 .custom-container-radio input:checked ~ .radiomark {
   background-color: #1665d8;
 }
-
 /* Create the indicator (the dot/circle - hidden when not checked) */
 .radiomark:after {
   content: "";
   position: absolute;
   display: none;
 }
-
 /* Show the indicator (dot/circle) when checked */
 .custom-container-radio input:checked ~ .radiomark:after {
   display: block;
 }
-
 /* Style the indicator (dot/circle) */
 .custom-container-radio .radiomark:after {
   top: 5.7px;
@@ -162,16 +210,13 @@ hr {
   background: #ffffff;
 }
 /*---------------------------------------------*/
-
 .tablelist tr:nth-child(even) {
   background-color: #fafafa !important;
 }
-
 .tablelist tr:hover {
   background-color: #eefdff !important;
   cursor: pointer !important;
 }
-
 .content-files-dropbox {
   padding: 10px;
   text-align: center;
@@ -180,7 +225,6 @@ hr {
   background: white;
   margin-bottom: 10px;
 }
-
 .steps-icon-arrow {
   font-size: 1.563rem;
   padding-top: 0.625rem;
@@ -190,4 +234,27 @@ hr {
 }
 .steps-icon-arrow .updown-icon:hover {
   color: #2676ea;
+}
+.img-responsive {
+  border-radius: 5px;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.cropper-remove-button-position {
+  position: absolute;
+  top: 0.313rem;
+  left: 0.313rem;
+}
+.drop-zone-area-custom-image {
+  width: 100%;
+  height: 100%;
+  padding: 0px 15px;
+  border-radius: 5px;
+  text-align: center;
+  border: var(--input-border);
+  background-color: white;
+}
+.dropzone-control-button button {
+  margin: 2px 2px 2px 0;
 }

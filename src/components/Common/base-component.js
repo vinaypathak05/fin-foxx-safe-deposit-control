@@ -161,7 +161,7 @@ export class BaseComponent extends Component {
             />
           </div>
         </div>
-        <div className="form-group text-help label-text-help pl-3">
+        <div className="form-group text-help label-text-help">
           {field.meta.error ? field.meta.error : ""}
         </div>
       </>

@@ -16,11 +16,13 @@ import {
 import {
   openCustomerCreateModal,
   addCustomer,
+  editCustomerSave,
   customerKycFiles,
 } from "../action";
 import { showSuccess, showError } from "../../Common/errorbar";
 import LocaleStrings from "../../../languages";
 import ImagesDrop from "../../Common/image-upload";
+import ImageCropper from "../../Common/uploader-image-cropper";
 import UploadIcon from "../../../assets/img/icons/picture.png";
 
 class AddCustomer extends Component {
@@ -41,13 +43,43 @@ class AddCustomer extends Component {
 
   onSubmitForm = (values) => {
     let { editMode, session } = this.props;
-    // console.log('Values: -', values)
 
+    this.setState({ loading: true });
     if (!editMode) {
-      this.setState({ loading: true });
       this.props.addCustomer(session, values, (response) => {
         if (response.success == 1) {
           this.props.showSuccess(LocaleStrings.agents_add_form_success);
+          this.props.finishOperationsCallback();
+          this.closeModal();
+        } else if (response.success == 2) {
+          this.setState({ loading: false });
+          let message = COMMON_FAIL_MESSAGE;
+          if (response.data.email != "") {
+            message = response.data.email;
+          }
+          if (response.data.firstname != "") {
+            message = response.data.firstname;
+          }
+          if (response.data.lastname != "") {
+            message = response.data.lastname;
+          }
+          if (response.data.mobile != "") {
+            message = response.data.mobile;
+          }
+          if (response.data.aadhaarnumber != "") {
+            message = response.data.aadhaarnumber;
+          }
+
+          this.props.showError(message);
+        } else {
+          this.setState({ loading: false });
+          this.props.showError(COMMON_FAIL_MESSAGE);
+        }
+      });
+    } else {
+      this.props.editCustomerSave(session, values, (response) => {
+        if (response.success == 1) {
+          this.props.showSuccess(LocaleStrings.agents_edit_form_success);
           this.props.finishOperationsCallback();
           this.closeModal();
         } else if (response.success == 2) {
@@ -90,6 +122,7 @@ class AddCustomer extends Component {
     } = this.props;
     var edit = editMode;
     let spinner = this.state.loading ? "fas fa-spinner fa-pulse" : "";
+    let disabled = this.state.loading ? true : false;
 
     return (
       <Modal className="" isOpen={modalStatus.showModal == true ? true : false}>
@@ -118,7 +151,7 @@ class AddCustomer extends Component {
           <div className="modal-body">
             <Tabs
               className="branding-tabs mt-0"
-              id="speaker-from-tab"
+              id="customer-tab"
               activeKey={this.state.selectedTab}
               onSelect={this.handleSelect}
             >
@@ -152,7 +185,7 @@ class AddCustomer extends Component {
             <Button
               color="primary"
               type="submit"
-              disabled={pristine || invalid || submitting}
+              disabled={pristine || invalid || submitting || disabled}
             >
               <i className={spinner} aria-hidden="true"></i>{" "}
               {LocaleStrings.button_save}
@@ -164,7 +197,7 @@ class AddCustomer extends Component {
   }
 }
 
-function validate(values) {
+function validate(values, ownProps) {
   // console.log('values : - ', values)
   let errors = {};
   var createdby = values["createdby"];
@@ -225,15 +258,29 @@ function validate(values) {
     errors["bankdetailspic"] = LocaleStrings.required;
   }
 
+  _.map(ownProps.customerKYCFiles, (form, index) => {
+    var formKey = form.key;
+    if (!values[formKey] || values[formKey].trim() === "") {
+      errors[formKey] = LocaleStrings.required;
+    }
+  });
+
+  // console.log("values :- ", values);
+  // console.log("errors :- ", errors);
   return errors;
 }
 
 function mapStateToProps(state, ownProps) {
-  var edit = false;
+  // var edit = false;
+  var edit = !_.isEmpty(state.editCustomer);
   var initVals =
     ownProps.callfrom === "agent"
       ? { createdby: ownProps.selectedAgent.agentDetails.agentid }
       : {};
+
+  if (edit) {
+    initVals = state.editCustomer;
+  }
 
   return {
     session: state.session,
@@ -246,11 +293,12 @@ function mapStateToProps(state, ownProps) {
 }
 
 export default connect(mapStateToProps, {
-  openCustomerCreateModal,
-  addCustomer,
-  customerKycFiles,
   showSuccess,
   showError,
+  openCustomerCreateModal,
+  addCustomer,
+  editCustomerSave,
+  customerKycFiles,
 })(
   reduxForm({
     validate,
@@ -456,17 +504,19 @@ class KYCFileUpload extends BaseComponent {
   onFilesDrop = (index, files) => {
     let { customerKYCFiles } = this.props;
 
-    // console.log('files :- ', files)
-    // console.log('index :- ', index)
-    // console.log('customerKYCFiles :- ', customerKYCFiles)
+    // console.log("files :- ", files);
+    // console.log("index :- ", index);
+    // console.log("customerKYCFiles :- ", customerKYCFiles);
 
-    customerKYCFiles[index].file = files.file ? files.file : "";
-    customerKYCFiles[index].filename = files.filename ? files.filename : "";
+    customerKYCFiles[index].file = files ? files : "";
+    customerKYCFiles[index].filename = files
+      ? `${customerKYCFiles[index].key}.png`
+      : "";
 
-    // console.log('customerKYCFiles : - ', customerKYCFiles)
+    // console.log("customerKYCFiles after : - ", customerKYCFiles);
     this.props.customerKycFiles(customerKYCFiles);
 
-    this.props.autofill(customerKYCFiles[index].key, files.file);
+    this.props.autofill(customerKYCFiles[index].key, files);
   };
 
   onFileAvailable = (available) => {
@@ -496,48 +546,64 @@ class KYCFileUpload extends BaseComponent {
       }
 
       return (
-        <>
-          <ImagesDrop
-            key={`key-${index}`}
-            label={item.label}
-            width={350}
-            height="auto"
-            onFileSave={this.onFilesDrop.bind(this, index)}
-            filepath={filePreview}
-            onFileChnageLocally={this.onFileAvailable}
-            fileName={fileName}
-            fileOld={fileOld}
-            className="content-files-dropbox"
-            innerText={
-              <div className="content-files-drop-text">
-                <div>
-                  <img src={`${UploadIcon}`} />
-                </div>
-                <div>
-                  {LocaleStrings.drag_and_drop} <br />
-                  {LocaleStrings.or}{" "}
-                  <span className="select-file">
-                    {LocaleStrings.select_file}
-                  </span>
-                </div>
-              </div>
-            }
-          />
-          <Field
-            name={item.key}
-            type="text"
-            component={this.renderHiddenFieldTextShowError}
-          />
-        </>
+        <div className="row m-0" key={`key-${index}`}>
+          <label className="col-md-12 p-0 custom-label">{item.label}</label>
+          <div className="col-md-12 p-0">
+            <ImageCropper
+              displaySize={
+                item.key === "userpic"
+                  ? { width: 170, height: 170 }
+                  : { width: 350, height: 200 }
+              } // For image display style
+              requiredSize={
+                item.key === "userpic"
+                  ? { width: 200, height: 200 }
+                  : { width: 350, height: 200 }
+              } // For image size required validation
+              cropperSize={
+                item.key === "userpic"
+                  ? { width: 100, height: 100 }
+                  : { width: 300, height: 150 }
+              } // Cropper display size. Note its add 50px for padding
+              onImageSave={this.onFilesDrop.bind(this, index)}
+              onImageChange={this.onFileAvailable}
+              imagepath={filePreview}
+              imageType="jpg"
+              className="drop-zone-area-custom-image"
+              insideImage={UploadIcon}
+              insideImageStyle={
+                item.key === "userpic"
+                  ? {
+                      width: 25,
+                      height: 25,
+                      margin: "25px 0px 5px",
+                    }
+                  : {
+                      width: 25,
+                      height: 25,
+                      margin: "50px 0px 5px",
+                    }
+              }
+              insideText={
+                item.key === "userpic"
+                  ? "Drag and Drop or Click here to upload image. Image size must be 200x200 px."
+                  : "Drag and Drop or Click here to upload image. Image size must be 350x200 px."
+              }
+            />
+            <Field
+              name={item.key}
+              type="text"
+              component={this.renderHiddenFieldTextShowError}
+            />
+          </div>
+        </div>
       );
     });
   };
 
   render() {
     return (
-      <div className="dashboard-inside-container">
-        <div className="row">{this.otherFiles()}</div>
-      </div>
+      <div className="dashboard-inside-container">{this.otherFiles()}</div>
     );
   }
 }

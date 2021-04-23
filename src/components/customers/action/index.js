@@ -9,6 +9,7 @@ import { BASE_URL, itemCount } from "../../Common/constant";
 export const CUSTOMERS_LISTS = "CUSTOMERS_LISTS";
 export const CUSTOMER_CREATE_MODEL = "CUSTOMER_CREATE_MODEL";
 export const UPDATE_CUSTOMER_KYC_FILES = "UPDATE_CUSTOMER_KYC_FILES";
+export const EDIT_CUSTOMER = "EDIT_CUSTOMER";
 export const CUSTOMER_PAYMENT_MODEL = "CUSTOMER_PAYMENT_MODEL";
 export const CUSTOMER_REWARD_MODEL = "CUSTOMER_REWARD_MODEL";
 export const CUSTOMER_APPROVE_MODAL = "CUSTOMER_APPROVE_MODAL";
@@ -179,6 +180,39 @@ export function customerKycFiles(files) {
 
 export function addCustomer(session, values, callback) {
   var url = `${BASE_URL}/api/addcustomer`;
+  var body = new URLSearchParams(values);
+  // console.log('body : - ', body)
+
+  return (dispatch) => {
+    postMultipartRequest(
+      url,
+      body,
+      session,
+      dispatch,
+      (response) => {
+        // console.log('response : - ', response)
+
+        if (response.success == 1) {
+          callback({ success: 1, data: response.resource });
+        } else if (response.success == 2) {
+          callback({ success: 2, data: response.resource });
+        } else {
+          callback({ success: 0 });
+        }
+      },
+      (error) => {
+        // callback({success: 0, error: error});
+      }
+    );
+  };
+}
+
+export function editCustomer(obj) {
+  return { type: EDIT_CUSTOMER, payload: obj };
+}
+
+export function editCustomerSave(session, values, callback) {
+  var url = `${BASE_URL}/api/editcustomer`;
   var body = new URLSearchParams(values);
   // console.log('body : - ', body)
 
