@@ -29,6 +29,13 @@ class CustomersList extends Component {
     e.stopPropagation();
   };
 
+  openRowDetails = (e) => {
+    this.props.history.push({
+      pathname: "/admin/customer/" + this.props.printList.customerid,
+      state: { selected: this.props.printList },
+    });
+  };
+
   edit = (e) => {
     e.preventDefault();
     e.stopPropagation();
@@ -76,13 +83,6 @@ class CustomersList extends Component {
     this.props.customerKycFiles(files);
     this.props.openCustomerCreateModal({ showModal: true });
     this.props.editCustomer(printList);
-  };
-
-  openRowDetails = (e) => {
-    this.props.history.push({
-      pathname: "/admin/customer/" + this.props.printList.customerid,
-      state: { selected: this.props.printList },
-    });
   };
 
   // collectAmount = (e) => {

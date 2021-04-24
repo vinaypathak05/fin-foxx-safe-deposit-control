@@ -1,18 +1,22 @@
-import {SHOWBAR,HIDEBAR,BARSHOWN,BARHIDDEN} from './actions';
+import { SHOWBAR, HIDEBAR, BARSHOWN, BARHIDDEN } from "./actions";
 
 var initialState = {
-  message: '',
+  message: "",
   toShowError: false,
-  toHideError: false
-}
+  toHideError: false,
+};
 
-export function ErrorBarReducer(state=initialState,action){
+export function ErrorBarReducer(state = initialState, action) {
   //debugger;
   switch (action.type) {
     case SHOWBAR:
-      return {toShowError:true,message:action.payload.message,isError:action.payload.isError};
+      return {
+        toShowError: true,
+        message: action.payload.message,
+        isError: action.payload.isError,
+      };
     case HIDEBAR:
-      return {toHideError:true,isError:state.isError};
+      return { toHideError: true, isError: state.isError };
     default:
       return state;
   }

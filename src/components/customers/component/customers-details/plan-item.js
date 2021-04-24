@@ -89,7 +89,7 @@ class PlanList extends Component {
               <svg xmlns="http://www.w3.org/2000/svg" width="97" height="29">
                 <path
                   fill="#f8e71c"
-                  fill-rule="evenodd"
+                  fillRule="evenodd"
                   d="M88.362 12.578c-1.049 1.061-1.049 2.783 0 3.845l7.845 7.936c1.693 1.713.494 4.641-1.9 4.641H5c-2.761 0-5-2.239-5-5V5c0-2.761 2.239-5 5-5h89.307c2.394 0 3.593 2.928 1.9 4.641l-7.845 7.937z"
                 />
               </svg>
@@ -148,7 +148,7 @@ class PlanList extends Component {
               <span className="fa-md">{printList.planleftamount}</span>
             </div>
           </Col>
-          <Col md={4} className="text-right">
+          <Col md={4} className="text-right plan-action-section">
             {moment().isSameOrAfter(moment(printList.planactivatedate)) &&
             (plantype === "ongoing" || plantype === "cashback") ? (
               <Button

@@ -1,8 +1,8 @@
-import {showError,showSuccess,hideError} from './actions';
-import ErrorBar from './errorbar';
-import ErrorBarContainer from './errorbar';
-import {ErrorBarReducer} from './reducers';
-import errorBarMiddleware from './error_bar_middleware';
+import { showError, showSuccess, hideError } from "./actions";
+import ErrorBar from "./errorbar";
+import ErrorBarContainer from "./errorbar";
+import { ErrorBarReducer } from "./reducers";
+import errorBarMiddleware from "./error_bar_middleware";
 
 export {
   showError,
@@ -10,7 +10,7 @@ export {
   hideError,
   ErrorBarReducer,
   ErrorBar,
-  errorBarMiddleware
-}
+  errorBarMiddleware,
+};
 
 export default ErrorBarContainer;

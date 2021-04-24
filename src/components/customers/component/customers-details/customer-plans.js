@@ -97,21 +97,21 @@ class CustomerPlans extends Component {
                 onSelect={this.handleSelect}
               >
                 <Tab
-                  className="p-1"
+                  className="p-1 cutomer-plan-tab"
                   eventKey={1}
                   title={LocaleStrings.customer_detail_text_ongoing_plans}
                 >
                   {this.renderList("ongoing")}
                 </Tab>
                 <Tab
-                  className="p-1"
+                  className="p-1 cutomer-plan-tab"
                   eventKey={2}
                   title={LocaleStrings.customer_detail_text_reward_plans}
                 >
                   {this.renderList("cashback")}
                 </Tab>
                 <Tab
-                  className="p-1"
+                  className="p-1 cutomer-plan-tab"
                   eventKey={3}
                   title={LocaleStrings.customer_detail_text_completed_plans}
                 >

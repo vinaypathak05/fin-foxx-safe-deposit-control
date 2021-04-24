@@ -276,6 +276,9 @@ hr {
   .agent-from-tab .nav-item {
     font-size: 12px;
   }
+  .cutomer-plan-tab .plan-action-section {
+    padding-top: 1rem;
+  }
 }
 
 @media (max-width: 375px) {

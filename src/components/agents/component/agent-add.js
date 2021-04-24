@@ -217,15 +217,15 @@ function validate(values, ownProps) {
     errors["password"] = LocaleStrings.agents_validation_invalid_min_password;
   }
 
-  if (!agentpic || agentpic.trim() === "") {
-    errors["agentpic"] = LocaleStrings.required;
-  }
-  if (!aadhaarfrontpic || aadhaarfrontpic.trim() === "") {
-    errors["aadhaarfrontpic"] = LocaleStrings.required;
-  }
-  if (!aadhaarbackpic || aadhaarbackpic.trim() === "") {
-    errors["aadhaarbackpic"] = LocaleStrings.required;
-  }
+  // if (!agentpic || agentpic.trim() === "") {
+  //   errors["agentpic"] = LocaleStrings.required;
+  // }
+  // if (!aadhaarfrontpic || aadhaarfrontpic.trim() === "") {
+  //   errors["aadhaarfrontpic"] = LocaleStrings.required;
+  // }
+  // if (!aadhaarbackpic || aadhaarbackpic.trim() === "") {
+  //   errors["aadhaarbackpic"] = LocaleStrings.required;
+  // }
 
   _.map(ownProps.uploadedAgentKycFiles, (form, index) => {
     var formKey = form.key;
@@ -403,7 +403,6 @@ class KYCFileUpload extends BaseComponent {
 
     // console.log('uploadedAgentKycFiles : - ', uploadedAgentKycFiles)
     this.props.agentKycFiles(uploadedAgentKycFiles);
-
     this.props.autofill(uploadedAgentKycFiles[index].key, files);
   };
 
@@ -435,7 +434,10 @@ class KYCFileUpload extends BaseComponent {
 
       return (
         <div className={`${item.key} row m-0`} key={`key-${index}`}>
-          <label className="col-md-12 p-0 custom-label">{item.label}</label>
+          <label className="col-md-12 p-0 custom-label">
+            {item.label}
+            <span>*</span>
+          </label>
           <div className="col-md-12 p-0">
             <ImageCropper
               displaySize={
@@ -475,7 +477,7 @@ class KYCFileUpload extends BaseComponent {
               insideText={
                 item.key === "agentpic"
                   ? "Drag and Drop or Click here to upload image. Image size must be 200x200 px."
-                  : "Drag and Drop or Click here to upload image. Image size must be 350x200 px."
+                  : "Drag and Drop or Click here to upload image. Image size must be 450x300 px."
               }
             />
             <Field

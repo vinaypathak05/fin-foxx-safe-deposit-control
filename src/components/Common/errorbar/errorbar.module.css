@@ -49,23 +49,23 @@
   right: 10px;
   /* border-radius: 10px; */
   border-radius: 4px;
-  -webkit-box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  -webkit-box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   z-index: 9999;
-  color: rgba(0,0,0,0.65);
+  color: rgba(0, 0, 0, 0.65);
 }
 
-.notiftitle{
-  font-size:14px;
-  font-weight:bold;
+.notiftitle {
+  font-size: 14px;
+  font-weight: bold;
   margin-bottom: 5px;
 }
 
-.notiftitle .errorIcon{
+.notiftitle .errorIcon {
   color: red;
 }
 
-.notiftitle .successIcon{
+.notiftitle .successIcon {
   color: green;
 }
 
@@ -89,10 +89,10 @@
   /* padding: 10px; */
   right: 10px;
   border-radius: 4px;
-  -webkit-box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  -webkit-box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   z-index: 9999;
-  color: rgba(0,0,0,0.65);
+  color: rgba(0, 0, 0, 0.65);
 }
 
 @keyframes slideErrorIn {
@@ -113,7 +113,6 @@
   display: block;
 }
 
-
 @keyframes slideErrorOut {
   from {
     right: 20px;
@@ -130,4 +129,13 @@
   animation: slideErrorOut 0.3s forwards;
   -webkit-animation: slideErrorOut 0.3s forwards;
   display: none;
+}
+
+@media (max-width: 425px) {
+  .errorbarDefault {
+    min-width: 280px;
+  }
+  .successbarDefault {
+    min-width: 280px;
+  }
 }

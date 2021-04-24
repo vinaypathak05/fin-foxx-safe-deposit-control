@@ -1,13 +1,13 @@
 import Index from "./views/Index.jsx";
 import Login from "./views/examples/Login.js";
 import Agents from "./components/agents/component/index";
-import AgentDetails from './components/agents/component/agents-details';
+import AgentDetails from "./components/agents/component/agents-details";
 import Customers from "./components/customers/component/index";
-import CustomerDetails from './components/customers/component/customers-details';
+import CustomerDetails from "./components/customers/component/customers-details";
 import Plans from "./components/plans/component/index";
 
 // Languages
-import LocaleStrings from './languages';
+import LocaleStrings from "./languages";
 
 var routes = [
   {
@@ -16,7 +16,7 @@ var routes = [
     icon: "ni ni-tv-2 text-info",
     component: Index,
     display: true,
-    layout: "/admin"
+    layout: "/admin",
   },
   {
     path: "/agents",
@@ -24,7 +24,7 @@ var routes = [
     icon: "ni ni-single-02 text-info",
     component: Agents,
     display: true,
-    layout: "/admin"
+    layout: "/admin",
   },
   {
     path: "/agent",
@@ -40,7 +40,7 @@ var routes = [
     icon: "fa fa-users text-info",
     component: Customers,
     display: true,
-    layout: "/admin"
+    layout: "/admin",
   },
   {
     path: "/customer",
@@ -48,7 +48,7 @@ var routes = [
     icon: "fa fa-users text-info",
     component: CustomerDetails,
     display: false,
-    layout: "/admin"
+    layout: "/admin",
   },
   {
     path: "/plans",
@@ -56,7 +56,7 @@ var routes = [
     icon: "fa fa-road text-info",
     component: Plans,
     display: true,
-    layout: "/admin"
+    layout: "/admin",
   },
   {
     path: "/login",
@@ -64,7 +64,7 @@ var routes = [
     icon: "ni ni-key-25 text-info",
     component: Login,
     display: false,
-    layout: "/auth"
+    layout: "/auth",
   },
 ];
 export default routes;

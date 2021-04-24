@@ -145,7 +145,10 @@ export default function ImageCropper(props) {
 
   return (
     <>
-      <div style={imageDisplayContaner} className={`${hideDropZoneClass}`}>
+      <div
+        style={imageDisplayContaner}
+        className={`image-section ${hideDropZoneClass}`}
+      >
         <Dropzone onDrop={onDropFile} accept="image/*" multiple={false}>
           {({ getRootProps, getInputProps }) => (
             // <section className={`${hideDropZoneClass}`}>
@@ -201,7 +204,7 @@ export default function ImageCropper(props) {
               disabledrop="true"
               width={cropperSize.width}
               height={cropperSize.height}
-              className="editor-canvas"
+              className="editor-canvas image-section"
               style={{ background: "#777" }}
             />
             <div className="dropzone-control-button">

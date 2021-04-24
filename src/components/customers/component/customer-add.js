@@ -206,10 +206,6 @@ function validate(values, ownProps) {
   var email = values["email"];
   var mobile = values["mobile"];
   var aadhaarnumber = values["aadhaarnumber"];
-  var userpic = values["userpic"];
-  var aadhaarfrontpic = values["aadhaarfrontpic"];
-  var aadhaarbackpic = values["aadhaarbackpic"];
-  var bankdetailspic = values["bankdetailspic"];
 
   if (!createdby || createdby === "") {
     errors["createdby"] = LocaleStrings.required;
@@ -240,22 +236,6 @@ function validate(values, ownProps) {
   if (aadhaarnumber && !validateAadhaarNumber(aadhaarnumber)) {
     errors["aadhaarnumber"] =
       LocaleStrings.customers_validation_invalid_aadhaar_number;
-  }
-
-  if (!userpic || userpic.trim() === "") {
-    errors["userpic"] = LocaleStrings.required;
-  }
-
-  if (!aadhaarfrontpic || aadhaarfrontpic.trim() === "") {
-    errors["aadhaarfrontpic"] = LocaleStrings.required;
-  }
-
-  if (!aadhaarbackpic || aadhaarbackpic.trim() === "") {
-    errors["aadhaarbackpic"] = LocaleStrings.required;
-  }
-
-  if (!bankdetailspic || bankdetailspic.trim() === "") {
-    errors["bankdetailspic"] = LocaleStrings.required;
   }
 
   _.map(ownProps.customerKYCFiles, (form, index) => {
@@ -515,7 +495,6 @@ class KYCFileUpload extends BaseComponent {
 
     // console.log("customerKYCFiles after : - ", customerKYCFiles);
     this.props.customerKycFiles(customerKYCFiles);
-
     this.props.autofill(customerKYCFiles[index].key, files);
   };
 
@@ -547,7 +526,10 @@ class KYCFileUpload extends BaseComponent {
 
       return (
         <div className={`${item.key} row m-0`} key={`key-${index}`}>
-          <label className="col-md-12 p-0 custom-label">{item.label}</label>
+          <label className="col-md-12 p-0 custom-label">
+            {item.label}
+            <span>*</span>
+          </label>
           <div className="col-md-12 p-0">
             <ImageCropper
               displaySize={

@@ -56,6 +56,9 @@ class CustomerBasicDetails extends Component {
               <thead className="thead-light">
                 <tr>
                   <th scope="col">
+                    {LocaleStrings.customers_table_th_customercode}
+                  </th>
+                  <th scope="col">
                     {LocaleStrings.customers_table_th_agentname}
                   </th>
                   <th scope="col">{LocaleStrings.customers_table_th_email}</th>
@@ -68,6 +71,13 @@ class CustomerBasicDetails extends Component {
               </thead>
               <tbody>
                 <tr>
+                  <td>
+                    <div>
+                      {selectedCustomer.details
+                        ? selectedCustomer.details.customercode
+                        : ""}
+                    </div>
+                  </td>
                   <td>
                     <div>
                       {selectedCustomer.details
