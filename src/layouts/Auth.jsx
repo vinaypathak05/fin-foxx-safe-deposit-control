@@ -17,7 +17,7 @@ class Auth extends React.Component {
   componentWillUnmount() {
     document.body.classList.remove("bg-default");
   }
-  getRoutes = routes => {
+  getRoutes = (routes) => {
     return routes.map((prop, key) => {
       if (prop.layout === "/auth") {
         return (
@@ -67,7 +67,7 @@ class Auth extends React.Component {
             </div>
           </div>
           {/* Page content */}
-          <Container className="mt--8 pb-5">
+          <Container className="mt--7 pb-5">
             <Row className="justify-content-center">
               <Switch>{this.getRoutes(routes)}</Switch>
             </Row>
