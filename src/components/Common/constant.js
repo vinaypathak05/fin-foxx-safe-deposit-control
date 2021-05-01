@@ -3,8 +3,8 @@ import moment from "moment";
 
 // export var BASE_URL = 'http://localhost:8888/backendci';
 // export var BASE_URL = 'http://localhost:3000';
-// export var BASE_URL = "http://payinsure.in/backendci"; // Prod
-export var BASE_URL = "http://payinsure.in/backendci_dev"; // Dev
+export var BASE_URL = "http://payinsure.in/backendci"; // Prod
+// export var BASE_URL = "http://payinsure.in/backendci_dev"; // Dev
 export var IMAGE_PATH = "../../assets/img/";
 export var BASE_IMAGES_URL = `${BASE_URL}`;
 
