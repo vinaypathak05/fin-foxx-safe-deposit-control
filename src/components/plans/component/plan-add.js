@@ -40,10 +40,15 @@ class AddPlan extends Component {
               let message = COMMON_FAIL_MESSAGE;
               if (response.data.planname != "") {
                 message = response.data.planname;
-              } else if (response.data.planduration != "") {
+              }
+              if (response.data.planduration != "") {
                 message = response.data.planduration;
-              } else if (response.data.planamount != "") {
+              }
+              if (response.data.planamount != "") {
                 message = response.data.planamount;
+              }
+              if (response.data.paymentmode != "") {
+                message = response.data.paymentmode;
               }
 
               this.props.showError(message);
@@ -76,6 +81,7 @@ class AddPlan extends Component {
     } = this.props;
     var edit = editMode;
     let spinner = this.state.loading ? "fas fa-spinner fa-pulse" : "";
+    let disabled = this.state.loading ? true : false;
 
     return (
       <Modal className="" isOpen={modalStatus.showModal == true ? true : false}>
@@ -111,7 +117,7 @@ class AddPlan extends Component {
             <Button
               color="primary"
               type="submit"
-              disabled={pristine || invalid || submitting}
+              disabled={pristine || invalid || submitting || disabled}
             >
               <i className={spinner} aria-hidden="true"></i>{" "}
               {LocaleStrings.button_save}
