@@ -111,7 +111,7 @@ const LocaleStrings = new LocalizedStrings({
     agents_add_form_ph_ifsc: "Enter your bank ifsc code",
     agents_add_form_label_profile: "Profile Photo",
     agents_add_form_label_aadhaarfront: "Aadhaar Front Photo",
-    agents_add_form_label_aadhaarback: "Aadhar Back Photo",
+    agents_add_form_label_aadhaarback: "Aadhaar Back Photo",
     agents_add_form_label_pancard: "Pancard Photo",
     agents_validation_invalid_email: "Invalid email",
     agents_validation_invalid_mobile_number: "Invalid mobile format",
