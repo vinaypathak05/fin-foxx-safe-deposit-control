@@ -1,10 +1,8 @@
-import LocalStrings from "../../languages";
 import moment from "moment";
+import LocalStrings from "../../languages";
 
-// export var BASE_URL = 'http://localhost:8888/backendci';
-// export var BASE_URL = 'http://localhost:3000';
-export var BASE_URL = "http://payinsure.in/backendci"; // Prod
-// export var BASE_URL = "http://payinsure.in/backendci_dev"; // Dev
+export var BASE_URL = "https://payinsure.in/backendci"; // Prod
+// export var BASE_URL = "https://payinsure.in/backendci_dev"; // Dev
 export var IMAGE_PATH = "../../assets/img/";
 export var BASE_IMAGES_URL = `${BASE_URL}`;
 
@@ -15,7 +13,7 @@ export var dbSaveDateFormat = "YYYY-MM-DD HH:mm:ss";
 
 export var LABEL_POSITION_TOP = "TOP";
 export var LABEL_POSITION_LEFT = "LEFT";
-export var AGENT_INSENTIVE = 9;
+export var AGENT_INSENTIVE = 5;
 export var AGENT_SECURITY_AMOUNT = 500;
 export var AGENT_FIRST_RECHARGE = 550;
 export var DISPLAY_DATE_FORMAT = "DD-MM-YYYY";

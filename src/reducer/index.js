@@ -34,6 +34,7 @@ import {
   plansList,
   planCreateModal,
 } from "../components/plans/reducer";
+import { trackedPlans } from "../components/trackcustomerplan/reducers";
 
 var LoginReducer = (state = {}, action) => {
   // need to change it to false
@@ -144,6 +145,9 @@ var rootReducer = combineReducers({
   allPlansList: allPlansList,
   plansList: plansList,
   planCreateModal: planCreateModal,
+
+  // Track Customer Plan
+  trackedPlans: trackedPlans,
 });
 
 export default rootReducer;

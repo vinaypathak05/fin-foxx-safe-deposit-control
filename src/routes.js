@@ -5,6 +5,7 @@ import AgentDetails from "./components/agents/component/agents-details";
 import Customers from "./components/customers/component/index";
 import CustomerDetails from "./components/customers/component/customers-details";
 import Plans from "./components/plans/component/index";
+import TrackPlans from "./components/trackcustomerplan/index";
 
 // Languages
 import LocaleStrings from "./languages";
@@ -55,6 +56,14 @@ var routes = [
     name: LocaleStrings.plans,
     icon: "fa fa-road text-info",
     component: Plans,
+    display: true,
+    layout: "/admin",
+  },
+  {
+    path: "/trackplan",
+    name: LocaleStrings.trackplan,
+    icon: "fa fa-flag text-info",
+    component: TrackPlans,
     display: true,
     layout: "/admin",
   },

@@ -25,10 +25,10 @@ const LocaleStrings = new LocalizedStrings({
     customers: "Customers",
     customerDetails: "Customer Details",
     plans: "Plans",
+    trackplan: "Track Plan",
     memberships: "Memberships",
     transactions: "Transactions",
     notifications: "Notifications",
-    reports: "Reports",
     settings: "Global Settings",
 
     //Buttons
@@ -62,6 +62,8 @@ const LocaleStrings = new LocalizedStrings({
     button_new_plan: "New Plan",
     button_upload_new_image: "Upload New",
     button_crop: "Crop",
+    button_check: "Check",
+    button_reset: "Reset",
 
     //Login
     welcome: "Welcome",
@@ -267,6 +269,21 @@ const LocaleStrings = new LocalizedStrings({
     plans_add_form_success: "Plan added succussfully.!",
     plans_alert_deactivated: "Plan deactivated succussfully.!",
     plans_alert_activated: "Plan activated succussfully.!",
+
+    // Plan Track
+    planstrack_label_startdate: "Start Date",
+    planstrack_label_enddate: "End Date",
+    planstrack_validation_select_start_end_date:
+      "Please select start and end date!",
+    planstrack_validation_start_date_greater_end_date:
+      "Start date can not be greater than end date!",
+    planstrack_table_th_name: "Name",
+    planstrack_table_th_planname: "Plan Name",
+    planstrack_table_th_plan_planpaid: "Paid Amount",
+    planstrack_table_th_plan_plandue: "Due Amount",
+    planstrack_table_th_plan_planamount: "Plan Amount",
+    planstrack_table_th_plan_startdate: "Plan Start Date",
+    planstrack_table_th_plan_enddate: "Plan Expiry Date",
   },
   it: {
     dashboard: "Dashboard",
