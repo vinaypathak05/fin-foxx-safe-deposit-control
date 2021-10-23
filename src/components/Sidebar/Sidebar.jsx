@@ -37,8 +37,8 @@ import {
 } from "reactstrap";
 
 import { logout } from "../action";
+import { DEVELOPMENT_TYPE } from "../Common/constant";
 import LocaleStrings from "../../languages";
-var ps;
 
 class Sidebar extends Component {
   state = {
@@ -130,7 +130,11 @@ class Sidebar extends Component {
             <NavbarBrand className="p-0" {...navbarBrandProps}>
               <img
                 alt={logo.imgAlt}
-                className="navbar-brand-img"
+                className={
+                  DEVELOPMENT_TYPE === "mohajon"
+                    ? "navbar-brand-img-moha"
+                    : "navbar-brand-img"
+                }
                 src={logo.imgSrc}
               />
             </NavbarBrand>

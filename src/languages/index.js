@@ -1,5 +1,6 @@
 import LocalizedStrings from "react-localization";
-import { totalmem } from "os";
+// var DEVELOPMENT_TYPE = "payinsure";
+var DEVELOPMENT_TYPE = "mohajon";
 
 const LocaleStrings = new LocalizedStrings({
   en: {
@@ -20,8 +21,9 @@ const LocaleStrings = new LocalizedStrings({
 
     // Menu
     dashboard: "Dashboard",
-    agents: "Agents",
-    agentDetails: "Agent Details",
+    agents: DEVELOPMENT_TYPE === "mohajon" ? "Introducer" : "Agents",
+    agentDetails:
+      DEVELOPMENT_TYPE === "mohajon" ? "Introducer Details" : "Agent Details",
     customers: "Customers",
     customerDetails: "Customer Details",
     plans: "Plans",
@@ -31,7 +33,7 @@ const LocaleStrings = new LocalizedStrings({
     notifications: "Notifications",
     settings: "Global Settings",
 
-    //Buttons
+    // Buttons
     button_signin: "Sign in",
     button_add_new: "Add New",
     button_edit: "Edit",
@@ -55,7 +57,8 @@ const LocaleStrings = new LocalizedStrings({
     button_recharge: "Recharge",
     button_new_customer: "New Customer",
     button_amount_collect: "Collect Amount",
-    button_reward_amount: "Reward Amount",
+    button_reward_amount:
+      DEVELOPMENT_TYPE === "mohajon" ? "Maturity Amount" : "Reward Amount",
     button_cashback_amount: "Cashback Amount",
     button_upload_new_file: "Upload New File",
     button_view_kyc: "View KYC",
@@ -68,7 +71,10 @@ const LocaleStrings = new LocalizedStrings({
     //Login
     welcome: "Welcome",
     welcome_text_sub: "Login to manage your admin panel",
-    login_to: "Login to PayInsure",
+    login_to:
+      DEVELOPMENT_TYPE === "mohajon"
+        ? "Login to Mohajon Capital"
+        : "Login to PayInsure",
     login_form_ph_email: "Email",
     login_text_invalid_password: "Invalid password",
     login_form_label_pass: "Password",
@@ -77,7 +83,8 @@ const LocaleStrings = new LocalizedStrings({
     login_form_validation_invalid_credential: "Invalid credential!",
 
     // Agents
-    agents_table_th_agentcode: "Agent Code",
+    agents_table_th_agentcode:
+      DEVELOPMENT_TYPE === "mohajon" ? "Introducer Code" : "Agent Code",
     agents_table_th_name: "Name",
     agents_table_th_email: "Email",
     agents_table_th_security_amount: "Security Amount",
@@ -91,8 +98,10 @@ const LocaleStrings = new LocalizedStrings({
     agents_madal_tab_text_basic_details: "Basic Info",
     agents_madal_tab_text_bank_details: "Bank Info",
     agents_madal_tab_text_docs_details: "Docs",
-    agents_madal_title_add: "Add New Agent",
-    agents_madal_title_edit: "Update Agent",
+    agents_madal_title_add:
+      DEVELOPMENT_TYPE === "mohajon" ? "Add New Introducer" : "Add New Agent",
+    agents_madal_title_edit:
+      DEVELOPMENT_TYPE === "mohajon" ? "Update Introducer" : "Update Agent",
     agents_add_form_label_email: "Email",
     agents_add_form_ph_email: "Enter your email",
     agents_add_form_label_firstname: "First Name",
@@ -119,24 +128,47 @@ const LocaleStrings = new LocalizedStrings({
     agents_validation_invalid_mobile_number: "Invalid mobile format",
     agents_validation_invalid_min_password:
       "Please enter minimum 8 characters password",
-    agents_add_form_success: "Agent added successfully.!",
-    agents_edit_form_success: "Agent updated successfully.!",
-    agents_approve_madal_title_approve_agent: "Approve Agent",
+    agents_add_form_success:
+      DEVELOPMENT_TYPE === "mohajon"
+        ? "Introducer added successfully!"
+        : "Agent added successfully!",
+    agents_edit_form_success:
+      DEVELOPMENT_TYPE === "mohajon"
+        ? "Introducer updated successfully!"
+        : "Agent updated successfully!",
+    agents_approve_madal_title_approve_agent:
+      DEVELOPMENT_TYPE === "mohajon" ? "Approve Introducer" : "Approve Agent",
     agents_approve_label_select: "Select Option",
     agents_approve_label_option1: "Submitted",
     agents_approve_label_option2: "Approved",
     agents_approve_label_option3: "Onhold",
     agents_approve_label_option4: "Cancelled",
-    agents_approve_form_success: "Agent approval status updated successfully.!",
-    agents_deactivated_success: "Agent deactivated successfully.!",
-    agents_activated_success: "Agent activated successfully.!",
-    agents_deleted_success: "Agent deleted successfully.!",
+    agents_approve_form_success:
+      DEVELOPMENT_TYPE === "mohajon"
+        ? "Introducer approval status updated successfully!"
+        : "Agent approval status updated successfully!",
+    agents_deactivated_success:
+      DEVELOPMENT_TYPE === "mohajon"
+        ? "Introducer deactivated successfully!"
+        : "Agent deactivated successfully!",
+    agents_activated_success:
+      DEVELOPMENT_TYPE === "mohajon"
+        ? "Introducer activated successfully!"
+        : "Agent activated successfully!",
+    agents_deleted_success:
+      DEVELOPMENT_TYPE === "mohajon"
+        ? "Introducer deleted successfull!"
+        : "Agent deleted successfully!",
     agents_detail_text_other_info: "Other Info",
     agents_detail_text_wallet_amount: "Wallet Amount",
-    agents_detail_text_earned_amount: "Total Earned Amount",
+    agents_detail_text_earned_amount:
+      DEVELOPMENT_TYPE === "mohajon"
+        ? "Total Incentive Amount"
+        : "Total Earned Amount",
     agents_detail_text_total_client: "Total Client",
     agents_detail_table_th_recharge_amount: "Recharge Amount",
-    agents_detail_table_th_earning_amount: "Earning Amount",
+    agents_detail_table_th_earning_amount:
+      DEVELOPMENT_TYPE === "mohajon" ? "Incentive Amount" : "Earning Amount",
     agents_detail_table_th_recharge_date: "Date",
     agents_detail_wallet_madal_title_recharge: "Recharge Wallet",
     agents_detail_wallet_add_form_label_amount: "Amount",
@@ -146,12 +178,13 @@ const LocaleStrings = new LocalizedStrings({
       "First time agent have to pay minimum Rs 550",
     agents_detail_wallet_text_security_money:
       "Pay your security money with first recharge",
-    agents_detail_wallet_add_form_success: "Wallet recharged successfully.!",
+    agents_detail_wallet_add_form_success: "Wallet recharged successfully!",
 
     // Customers
     customers_table_th_customercode: "Customer Code",
     customers_table_th_name: "Name",
-    customers_table_th_agentname: "Agent Name",
+    customers_table_th_agentname:
+      DEVELOPMENT_TYPE === "mohajon" ? "Introducer Name" : "Agent Name",
     customers_table_th_email: "Email",
     customers_table_th_mobile: "Mobile",
     customers_table_th_approvalstatus: "Approval Status",
@@ -163,7 +196,8 @@ const LocaleStrings = new LocalizedStrings({
     customers_madal_tab_text_basic_details: "Basic Info",
     customers_madal_tab_text_others_details: "Other Info",
     customers_madal_tab_text_docs_details: "Docs",
-    customers_add_form_label_user_agent: "Agent",
+    customers_add_form_label_user_agent:
+      DEVELOPMENT_TYPE === "mohajon" ? "Introducer" : "Agent",
     customers_add_form_ph_user_agent: "Select user agent",
     customers_add_form_label_email: "Email",
     customers_add_form_ph_email: "Enter your email",
@@ -189,7 +223,10 @@ const LocaleStrings = new LocalizedStrings({
     customers_add_form_success: "Customer added successfully.!",
     customers_edit_form_success: "Customer updated successfully.!",
 
-    customers_payment_received_text_agent_wallet: "Agent wallet amount",
+    customers_payment_received_text_agent_wallet:
+      DEVELOPMENT_TYPE === "mohajon"
+        ? "Introducer wallet amount"
+        : "Agent wallet amount",
     customers_payment_received_madal_title: "Collect Payment",
     customers_payment_received_form_label_amount: "Amount",
     customers_payment_received_form_ph_amount: "Enter amount",
@@ -198,19 +235,29 @@ const LocaleStrings = new LocalizedStrings({
     customers_payment_received_form_validation_invalid_fixed_amount:
       "You can not pay amount less than your plan amount.",
     customers_payment_received_form_validation_invalid_agent_amount:
-      "Agent wallet does not have sufficient amount, recharge agent wallet.",
+      DEVELOPMENT_TYPE === "mohajon"
+        ? "Introducer wallet does not have sufficient amount, recharge agent wallet."
+        : "Agent wallet does not have sufficient amount, recharge agent wallet.",
     customers_payment_received_form_validation_over_amount:
       "You can not accept more than customer due amount.",
     customers_payment_received_form_success:
       "Customer payment done successfully.!",
 
-    customers_reward_payment_madal_title: "Customer Reward Payment",
+    customers_reward_payment_madal_title:
+      DEVELOPMENT_TYPE === "mohajon"
+        ? "Customer Maturity Payment"
+        : "Customer Reward Payment",
     customers_reward_payment_form_label_amount: "Amount",
-    customers_reward_payment_form_ph_amount: "Enter reward amount",
+    customers_reward_payment_form_ph_amount:
+      DEVELOPMENT_TYPE === "mohajon"
+        ? "Enter maturity amount"
+        : "Enter reward amount",
     customers_reward_payment_form_validation_less_amount:
       "You can not pay amount less than customer's total paid amount.",
     customers_reward_payment_form_success:
-      "Customer reward payment done successfully.!",
+      DEVELOPMENT_TYPE === "mohajon"
+        ? "Customer maturity payment done successfully!"
+        : "Customer reward payment done successfully!",
 
     customers_approve_madal_title_approve_customer: "Approve Customer",
     customers_approve_label_select: "Select Option",
@@ -219,7 +266,9 @@ const LocaleStrings = new LocalizedStrings({
     customers_approve_label_option3: "Onhold",
     customers_approve_label_option4: "Cancelled",
     customers_approve_form_success:
-      "Agent approval status updated successfully.!",
+      DEVELOPMENT_TYPE === "mohajon"
+        ? "Introducer approval status updated successfully!"
+        : "Agent approval status updated successfully!",
 
     customer_detail_text_ongoing_plans: "Ongoing",
     customer_detail_text_completed_plans: "Completed",

@@ -1,5 +1,5 @@
-import React, {Component} from "react";
-import {connect} from "react-redux";
+import React, { Component } from "react";
+import { connect } from "react-redux";
 import { Route, Switch } from "react-router-dom";
 // reactstrap components
 import { Container } from "reactstrap";
@@ -8,7 +8,8 @@ import AdminNavbar from "../components/Navbars/AdminNavbar.jsx";
 // import AdminFooter from "../components/Footers/AdminFooter.jsx";
 import Sidebar from "../components/Sidebar/Sidebar.jsx";
 import routes from "../routes.js";
-import {ErrorBar} from '../components/Common/errorbar';
+import { ErrorBar } from "../components/Common/errorbar";
+import { DEVELOPMENT_TYPE } from "../components/Common/constant";
 
 class Admin extends Component {
   componentDidUpdate(e) {
@@ -18,12 +19,12 @@ class Admin extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if(!nextProps.isLoggedIn) {
+    if (!nextProps.isLoggedIn) {
       this.props.history.push("/");
     }
   }
 
-  getRoutes = routes => {
+  getRoutes = (routes) => {
     return routes.map((prop, key) => {
       if (prop.layout === "/admin") {
         return (
@@ -38,7 +39,7 @@ class Admin extends Component {
       }
     });
   };
-  getBrandText = path => {
+  getBrandText = (path) => {
     for (let i = 0; i < routes.length; i++) {
       if (
         this.props.location.pathname.indexOf(
@@ -50,6 +51,7 @@ class Admin extends Component {
     }
     return "Brand";
   };
+
   render() {
     return (
       <>
@@ -58,8 +60,11 @@ class Admin extends Component {
           routes={routes}
           logo={{
             innerLink: "/admin/index",
-            imgSrc: require("../assets/img/brand/main_logo.png"),
-            imgAlt: "..."
+            imgSrc:
+              DEVELOPMENT_TYPE === "mohajon"
+                ? require("../assets/img/brand/main_logo_moha.png")
+                : require("../assets/img/brand/main_logo_pay.png"),
+            imgAlt: "...",
           }}
         />
         <div className="main-content" ref="mainContent">
@@ -69,9 +74,7 @@ class Admin extends Component {
             pathname={this.props.location.pathname}
           />
           <Switch>{this.getRoutes(routes)}</Switch>
-          <Container fluid>
-            {/* <AdminFooter /> */}
-          </Container>
+          <Container fluid>{/* <AdminFooter /> */}</Container>
           <ErrorBar />
         </div>
       </>
@@ -82,7 +85,7 @@ class Admin extends Component {
 function mapStateToProps(state) {
   return {
     isLoggedIn: state.isLoggedIn,
-    session : state.session,
-  }  
+    session: state.session,
+  };
 }
 export default connect(mapStateToProps)(Admin);

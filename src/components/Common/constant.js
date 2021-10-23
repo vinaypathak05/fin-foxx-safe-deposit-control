@@ -1,14 +1,20 @@
 import moment from "moment";
 import LocalStrings from "../../languages";
+// export const DEVELOPMENT_TYPE = "payinsure";
+export const DEVELOPMENT_TYPE = "mohajon";
 
-export var BASE_URL = "https://payinsure.in/backendci"; // Prod
+export var BASE_URL =
+  DEVELOPMENT_TYPE === "mohajon"
+    ? "https://payinsure.in/mohabackendci"
+    : "https://payinsure.in/backendci";
+
+// export var BASE_URL = "https://payinsure.in/backendci"; // Prod
 // export var BASE_URL = "https://payinsure.in/backendci_dev"; // Dev
 export var IMAGE_PATH = "../../assets/img/";
 export var BASE_IMAGES_URL = `${BASE_URL}`;
 
 export var itemCount = calculateItemCount();
 export var COMMON_FAIL_MESSAGE = LocalStrings.common_fail_message;
-export var dateFormat = "DD/MM/YYYY";
 export var dbSaveDateFormat = "YYYY-MM-DD HH:mm:ss";
 
 export var LABEL_POSITION_TOP = "TOP";

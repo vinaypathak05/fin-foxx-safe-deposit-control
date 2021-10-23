@@ -12,10 +12,11 @@ import { loadState, saveState } from "./reducer/localStorage";
 
 import "./assets/vendor/nucleo/css/nucleo.css";
 import "./assets/vendor/@fortawesome/fontawesome-free/css/all.min.css";
-import "./assets/scss/argon-dashboard-react.scss";
-import "./assets/css/custom.css";
-import "./assets/css/rich-text-editor.css";
-import "./assets/css/react-confirm-alert.css";
+import "./assets/css/structure.scss";
+// import "./assets/scss/argon-dashboard-react.scss";
+// import "./assets/css/custom.css";
+// import "./assets/css/rich-text-editor.css";
+// import "./assets/css/react-confirm-alert.css";
 
 import AdminLayout from "./layouts/Admin.jsx";
 import AuthLayout from "./layouts/Auth.jsx";
