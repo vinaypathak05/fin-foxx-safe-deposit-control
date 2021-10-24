@@ -18,6 +18,7 @@ const LocaleStrings = new LocalizedStrings({
     payments: "Payments",
     invalid_profile_image_size:
       "Image is smaller than recommended image, upload another image.!",
+    invalid_date_range: "Invalid date range",
 
     // Menu
     dashboard: "Dashboard",
@@ -68,6 +69,7 @@ const LocaleStrings = new LocalizedStrings({
     button_crop: "Crop",
     button_check: "Check",
     button_reset: "Reset",
+    button_download: "Download",
 
     //Login
     welcome: "Welcome",
@@ -180,6 +182,14 @@ const LocaleStrings = new LocalizedStrings({
     agents_detail_wallet_text_security_money:
       "Pay your security money with first recharge",
     agents_detail_wallet_add_form_success: "Wallet recharged successfully!",
+
+    agents_detail_recharge_download_form_subtitle:
+      "Slect the date to download your recharge statement",
+    agents_detail_recharge_download_form_label_startdate: "Start Date",
+    agents_detail_recharge_download_form_ph_startdate: "Select start date",
+    agents_detail_recharge_download_form_label_enddate: "End Date",
+    agents_detail_recharge_download_form_ph_enddate: "Select end date",
+    agents_detail_recharge_download_error_norecord: "No recode to download",
 
     // Customers
     customers_table_th_customercode: "Customer Code",

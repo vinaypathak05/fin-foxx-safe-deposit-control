@@ -16,6 +16,7 @@ export const SELECTED_AGENT = "SELECTED_AGENT";
 export const AGENT_WALLET_RECHARGES = "AGENT_WALLET_RECHARGES";
 export const AGENT_CUSTOMERS = "AGENT_CUSTOMERS";
 export const AGENTS_WALLET_RECHARGE_MODAL = "AGENTS_WALLET_RECHARGE_MODAL";
+export const AGENTS_RECHARGE_DOWNLOAD_MODAL = "AGENTS_RECHARGE_DOWNLOAD_MODAL";
 
 export function fetchAllAgents(session, callback) {
   var url = `${BASE_URL}/api/agents?include_count=true&order=createdon&by=DESC`;
@@ -303,6 +304,7 @@ export function fetchSingleAgentWalletRecharges(
   body.append("agentid", id);
   body.append("limit", perPage);
   body.append("offset", offset);
+  body.append("include_count", true);
 
   var url = `${BASE_URL}/api/agentwalletrecharges`;
 
@@ -313,7 +315,7 @@ export function fetchSingleAgentWalletRecharges(
       session,
       dispatch,
       (response) => {
-        // console.log('response : - ', response)
+        // console.log("response : - ", response);
         dispatch({
           type: AGENT_WALLET_RECHARGES,
           payload: {
@@ -391,6 +393,43 @@ export function agentWalletRecharge(session, values, callback) {
 
         if (response.success == 1) {
           callback({ success: 1, data: response.resource });
+        } else if (response.success == 2) {
+          callback({ success: 2, data: response.resource });
+        } else {
+          callback({ success: 0 });
+        }
+      },
+      (error) => {
+        // callback({success: 0, error: error});
+      }
+    );
+  };
+}
+
+export function openRechargeDownloadModal(obj) {
+  return { type: AGENTS_RECHARGE_DOWNLOAD_MODAL, payload: obj };
+}
+
+export function agentRechargeDownload(session, values, callback) {
+  var url = `${BASE_URL}/api/agentrechargestatement`;
+  var body = new URLSearchParams(values);
+  // console.log('body : - ', body)
+
+  return (dispatch) => {
+    postMultipartRequest(
+      url,
+      body,
+      session,
+      dispatch,
+      (response) => {
+        // console.log("response : - ", response);
+
+        if (response.success == 1) {
+          callback({
+            success: 1,
+            data: response.resource,
+            count: response.count,
+          });
         } else if (response.success == 2) {
           callback({ success: 2, data: response.resource });
         } else {

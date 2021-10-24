@@ -83,7 +83,8 @@
     "reactstrap": "7.1.0",
     "redux": "^4.0.4",
     "redux-form": "^8.2.6",
-    "redux-thunk": "^2.3.0"
+    "redux-thunk": "^2.3.0",
+    "xlsx": "^0.17.3"
   },
   "devDependencies": {
     "@types/googlemaps": "3.30.18",

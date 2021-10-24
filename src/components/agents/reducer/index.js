@@ -9,6 +9,7 @@ import {
   AGENT_WALLET_RECHARGES,
   AGENT_CUSTOMERS,
   AGENTS_WALLET_RECHARGE_MODAL,
+  AGENTS_RECHARGE_DOWNLOAD_MODAL,
 } from "../action";
 
 export function allAgentsList(state = {}, action) {
@@ -76,6 +77,13 @@ export function agentCustomers(state = {}, action) {
 
 export function agentWalletRechrgeModal(state = {}, action) {
   if (action.type === AGENTS_WALLET_RECHARGE_MODAL) {
+    return action.payload;
+  }
+  return state;
+}
+
+export function agentRechrgeDownloadModal(state = {}, action) {
+  if (action.type === AGENTS_RECHARGE_DOWNLOAD_MODAL) {
     return action.payload;
   }
   return state;

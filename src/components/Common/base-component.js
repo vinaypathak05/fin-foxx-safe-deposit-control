@@ -441,7 +441,7 @@ export class BaseComponent extends Component {
             dateFormat={DISPLAY_DATE_FORMAT}
             disabled={disabled}
             timeFormat={false}
-            // closeOnSelect={true}
+            closeOnSelect={field.closeonselect ? true : false}
             isValidDate={isHidePastDate === "true" ? valid : null}
           />
           <div className="text-help label-text-help">

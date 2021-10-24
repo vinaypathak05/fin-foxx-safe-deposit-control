@@ -14,6 +14,7 @@ import {
   agentWalletRecharges,
   agentCustomers,
   agentWalletRechrgeModal,
+  agentRechrgeDownloadModal,
 } from "../components/agents/reducer";
 import {
   customersList,
@@ -126,6 +127,7 @@ var rootReducer = combineReducers({
   agentWalletRecharges: agentWalletRecharges,
   agentCustomers: agentCustomers,
   agentWalletRechrgeModal: agentWalletRechrgeModal,
+  agentRechrgeDownloadModal,
 
   // Customers
   customersList: customersList,

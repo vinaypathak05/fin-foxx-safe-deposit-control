@@ -12,11 +12,13 @@ import {
 } from "reactstrap";
 import LocaleStrings from "../../../../languages";
 import WalletRecharge from "./agent-wallet-recharge";
+import DownloadRechargeStatement from "./agent-recharge-statement-download";
 import RenderList from "./agent-wallet-items";
 import {
   openWalletRechargeModal,
   fetchSingleAgentWalletRecharges,
   fetchSingleAgent,
+  openRechargeDownloadModal,
 } from "../../action";
 import Pagination from "../../../Common/pagination";
 import Loader from "../../../Common/loader";
@@ -31,6 +33,10 @@ class AgentWallet extends Component {
 
   openModal = () => {
     this.props.openWalletRechargeModal({ showModal: true });
+  };
+
+  openDownloadModal = () => {
+    this.props.openRechargeDownloadModal({ showModal: true });
   };
 
   additionalCallback = () => {
@@ -71,7 +77,12 @@ class AgentWallet extends Component {
   };
 
   render() {
-    let { selectedAgent, modalStatus, agentWalletRecharges } = this.props;
+    let {
+      selectedAgent,
+      modalStatus,
+      agentWalletRecharges,
+      agentRechrgeDownloadModal,
+    } = this.props;
     // console.log("agentWalletRecharges :- ", agentWalletRecharges);
 
     return (
@@ -88,11 +99,22 @@ class AgentWallet extends Component {
                 selectedAgent.agentDetails.approvalstatus === "approved" &&
                 selectedAgent.agentDetails.status === "active" ? (
                   <Col md={6} className="text-right">
+                    {agentWalletRecharges && agentWalletRecharges.count > 0 ? (
+                      <Button
+                        color="primary"
+                        size="sm"
+                        type="button"
+                        onClick={this.openDownloadModal}
+                      >
+                        {LocaleStrings.button_download}
+                      </Button>
+                    ) : (
+                      ""
+                    )}
                     <Button
                       color="primary"
                       size="sm"
                       type="button"
-                      className="ml-3"
                       onClick={this.openModal}
                     >
                       {LocaleStrings.button_recharge}
@@ -162,6 +184,12 @@ class AgentWallet extends Component {
               </div>
             )}
           </Card>
+
+          {agentRechrgeDownloadModal && agentRechrgeDownloadModal.showModal ? (
+            <DownloadRechargeStatement />
+          ) : (
+            ""
+          )}
         </div>
       </Row>
     );
@@ -174,6 +202,7 @@ function mapStateToProps(state) {
     selectedAgent: state.selectedAgent,
     modalStatus: state.agentWalletRechrgeModal,
     agentWalletRecharges: state.agentWalletRecharges,
+    agentRechrgeDownloadModal: state.agentRechrgeDownloadModal,
   };
 }
 
@@ -181,4 +210,5 @@ export default connect(mapStateToProps, {
   openWalletRechargeModal,
   fetchSingleAgentWalletRecharges,
   fetchSingleAgent,
+  openRechargeDownloadModal,
 })(AgentWallet);
