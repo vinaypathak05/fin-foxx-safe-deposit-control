@@ -67,15 +67,15 @@ class Customers extends Component {
         file: "",
         filename: "",
       },
-      ...(DEVELOPMENT_TYPE === "mohajon"
-        ? {
-            label: LocaleStrings.customers_add_form_label_pancard,
-            key: "pancardpic",
-            file: "",
-            filename: "",
-          }
-        : {}),
     ];
+    if (DEVELOPMENT_TYPE === "mohajon") {
+      files.push({
+        label: LocaleStrings.customers_add_form_label_pancard,
+        key: "pancardpic",
+        file: "",
+        filename: "",
+      });
+    }
 
     this.props.customerKycFiles(files);
     this.props.openCustomerCreateModal({ showModal: true });

@@ -25,8 +25,9 @@ const LocaleStrings = new LocalizedStrings({
     agents: DEVELOPMENT_TYPE === "mohajon" ? "Introducer" : "Agents",
     agentDetails:
       DEVELOPMENT_TYPE === "mohajon" ? "Introducer Details" : "Agent Details",
-    customers: "Customers",
-    customerDetails: "Customer Details",
+    customers: DEVELOPMENT_TYPE === "mohajon" ? "Members" : "Customers",
+    customerDetails:
+      DEVELOPMENT_TYPE === "mohajon" ? "Member Details" : "Customer Details",
     plans: "Plans",
     trackplan: "Track Plan",
     memberships: "Memberships",
@@ -192,7 +193,8 @@ const LocaleStrings = new LocalizedStrings({
     agents_detail_recharge_download_error_norecord: "No recode to download",
 
     // Customers
-    customers_table_th_customercode: "Customer Code",
+    customers_table_th_customercode:
+      DEVELOPMENT_TYPE === "mohajon" ? "Member Id" : "Customer Code",
     customers_table_th_name: "Name",
     customers_table_th_agentname:
       DEVELOPMENT_TYPE === "mohajon" ? "Introducer Name" : "Agent Name",

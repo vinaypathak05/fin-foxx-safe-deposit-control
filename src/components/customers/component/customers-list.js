@@ -16,7 +16,7 @@ import {
   customerKycFiles,
 } from "../action";
 import { showSuccess, showError } from "../../Common/errorbar";
-import { COMMON_FAIL_MESSAGE } from "../../Common/constant";
+import { COMMON_FAIL_MESSAGE, DEVELOPMENT_TYPE } from "../../Common/constant";
 import LocaleStrings from "../../../languages";
 
 class CustomersList extends Component {
@@ -52,33 +52,44 @@ class CustomersList extends Component {
     var bankdetailspic = printList.bankdetailspic
       ? printList.bankdetailspic.split("/").pop()
       : "";
+    var pancardpic = printList.pancardpic
+      ? printList.pancardpic.split("/").pop()
+      : "";
 
     var files = [
       {
-        label: "Profile Photo",
+        label: LocaleStrings.customers_add_form_label_profile,
         key: "userpic",
         file: printList.userpic ? printList.userpic : "",
         filename: userpic ? userpic : "",
       },
       {
-        label: "Aadhaar Front Photo",
+        label: LocaleStrings.customers_add_form_label_aadhaarfront,
         key: "aadhaarfrontpic",
         file: printList.aadhaarfrontpic ? printList.aadhaarfrontpic : "",
         filename: aadhaarfrontpic ? aadhaarfrontpic : "",
       },
       {
-        label: "Aadhar Back Photo",
+        label: LocaleStrings.customers_add_form_label_aadhaarback,
         key: "aadhaarbackpic",
         file: printList.aadhaarbackpic ? printList.aadhaarbackpic : "",
         filename: aadhaarbackpic ? aadhaarbackpic : "",
       },
       {
-        label: "Bank Account Photo",
+        label: LocaleStrings.customers_add_form_label_bankacc,
         key: "bankdetailspic",
         file: printList.bankdetailspic ? printList.bankdetailspic : "",
         filename: bankdetailspic ? bankdetailspic : "",
       },
     ];
+    if (DEVELOPMENT_TYPE === "mohajon") {
+      files.push({
+        label: LocaleStrings.customers_add_form_label_pancard,
+        key: "pancardpic",
+        file: printList.pancardpic ? printList.pancardpic : "",
+        filename: pancardpic ? pancardpic : "",
+      });
+    }
     // console.log("files :- ", files);
     this.props.customerKycFiles(files);
     this.props.openCustomerCreateModal({ showModal: true });

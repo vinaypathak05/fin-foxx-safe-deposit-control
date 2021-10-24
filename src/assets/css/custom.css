@@ -287,6 +287,31 @@ hr {
   margin: 0 0.2rem;
 }
 
+.tag {
+  background: #ffff00;
+  border-radius: 3px 0 0 3px;
+  color: var(--primary-text-color);
+  display: inline-block;
+  height: 26px;
+  line-height: 26px;
+  padding: 0 20px 0 10px;
+  position: relative;
+  margin: 0 10px 10px 0;
+  text-decoration: none;
+  -webkit-transition: color 0.2s;
+}
+
+.tag::after {
+  background: #fff;
+  border-bottom: 13px solid transparent;
+  border-left: 10px solid #ffff00;
+  border-top: 13px solid transparent;
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
 @media (max-width: 425px) {
   .customer-add-tabs .nav-item {
     font-size: 12px;
