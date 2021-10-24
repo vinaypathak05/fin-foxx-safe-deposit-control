@@ -198,7 +198,10 @@ const LocaleStrings = new LocalizedStrings({
     customers_madal_tab_text_docs_details: "Docs",
     customers_add_form_label_user_agent:
       DEVELOPMENT_TYPE === "mohajon" ? "Introducer" : "Agent",
-    customers_add_form_ph_user_agent: "Select user agent",
+    customers_add_form_ph_user_agent:
+      DEVELOPMENT_TYPE === "mohajon"
+        ? "Select user introducer"
+        : "Select user agent",
     customers_add_form_label_email: "Email",
     customers_add_form_ph_email: "Enter your email",
     customers_add_form_label_firstname: "First Name",
@@ -219,6 +222,11 @@ const LocaleStrings = new LocalizedStrings({
     customers_add_form_ph_state: "Enter state name",
     customers_add_form_label_pin: "Pincode",
     customers_add_form_ph_pin: "Enter pincode",
+    customers_add_form_label_profile: "Profile Photo",
+    customers_add_form_label_aadhaarfront: "Aadhaar Front Photo",
+    customers_add_form_label_aadhaarback: "Aadhaar Back Photo",
+    customers_add_form_label_bankacc: "Bank Account Photo",
+    customers_add_form_label_pancard: "Pancard Photo",
     customers_validation_invalid_aadhaar_number: "Invalid aadhaar format",
     customers_add_form_success: "Customer added successfully.!",
     customers_edit_form_success: "Customer updated successfully.!",
@@ -265,6 +273,9 @@ const LocaleStrings = new LocalizedStrings({
     customers_approve_label_option2: "Approved",
     customers_approve_label_option3: "Onhold",
     customers_approve_label_option4: "Cancelled",
+    customers_approve_label_pdf: "Upload Approval Pdf",
+    customers_approve_validation_pdf_required:
+      "Please upload the approval pdf file",
     customers_approve_form_success:
       DEVELOPMENT_TYPE === "mohajon"
         ? "Introducer approval status updated successfully!"

@@ -26,7 +26,7 @@ import CreateNew from "./customer-add";
 import ApproveCustomer from "./customer-approve";
 import Header from "../../Headers/Header.jsx";
 import Pagination from "../../Common/pagination";
-import { itemCount } from "../../Common/constant";
+import { itemCount, DEVELOPMENT_TYPE } from "../../Common/constant";
 import Loader from "../../Common/loader";
 import LocaleStrings from "../../../languages";
 
@@ -43,25 +43,38 @@ class Customers extends Component {
 
   openModal = () => {
     var files = [
-      { label: "Profile Photo", key: "userpic", file: "", filename: "" },
       {
-        label: "Aadhaar Front Photo",
+        label: LocaleStrings.customers_add_form_label_profile,
+        key: "userpic",
+        file: "",
+        filename: "",
+      },
+      {
+        label: LocaleStrings.customers_add_form_label_aadhaarfront,
         key: "aadhaarfrontpic",
         file: "",
         filename: "",
       },
       {
-        label: "Aadhar Back Photo",
+        label: LocaleStrings.customers_add_form_label_aadhaarback,
         key: "aadhaarbackpic",
         file: "",
         filename: "",
       },
       {
-        label: "Bank Account Photo",
+        label: LocaleStrings.customers_add_form_label_bankacc,
         key: "bankdetailspic",
         file: "",
         filename: "",
       },
+      ...(DEVELOPMENT_TYPE === "mohajon"
+        ? {
+            label: LocaleStrings.customers_add_form_label_pancard,
+            key: "pancardpic",
+            file: "",
+            filename: "",
+          }
+        : {}),
     ];
 
     this.props.customerKycFiles(files);

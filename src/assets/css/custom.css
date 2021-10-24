@@ -1,13 +1,8 @@
-:root {
-  /* --theme-color: #0d1be0; */ /* Payinsure */
-  --theme-color: #2dce89; /* Mohajon */
-  --input-border: 1px solid #e6edf3;
-}
 /* Custom buttons start */
 .custom-button-primary-md {
   height: 2.5rem;
   background: transparent
-    linear-gradient(0deg, var(--theme-color) 0%, var(--theme-color) 100%) 0% 0%
+    linear-gradient(0deg, var(--themecolor1) 0%, var(--themecolor1) 100%) 0% 0%
     no-repeat padding-box;
   padding: 0.313rem 0.938rem;
   border-radius: 0.25rem;
@@ -38,7 +33,7 @@
   width: 2.5rem;
   height: 2.5rem;
   background: transparent
-    linear-gradient(0deg, var(--theme-color) 0%, var(--theme-color) 100%) 0% 0%
+    linear-gradient(0deg, var(--themecolor1) 0%, var(--themecolor1) 100%) 0% 0%
     no-repeat padding-box;
   border-radius: 0.25rem;
   border: none;
@@ -66,9 +61,10 @@
   cursor: pointer;
 }
 /* Custom buttons end */
+
 /* Static text start */
 .theme-color-text {
-  color: var(--theme-color) !important;
+  color: var(--themecolor1) !important;
 }
 .custom-text3-normal {
   font-size: 0.88rem;
@@ -196,7 +192,7 @@ hr {
 }
 /* When the radio button is checked, add a blue background */
 .custom-container-radio input:checked ~ .radiomark {
-  background-color: var(--theme-color);
+  background-color: var(--themecolor1);
 }
 /* Create the indicator (the dot/circle - hidden when not checked) */
 .radiomark:after {
@@ -228,7 +224,7 @@ hr {
 .content-files-dropbox {
   padding: 10px;
   text-align: center;
-  border: 1px dashed var(--theme-color);
+  border: 1px dashed var(--themecolor1);
   border-radius: 5px;
   background: white;
   margin-bottom: 10px;
@@ -238,10 +234,10 @@ hr {
   padding-top: 0.625rem;
 }
 .steps-icon-arrow .circle-up {
-  color: var(--theme-color);
+  color: var(--themecolor1);
 }
 .steps-icon-arrow .updown-icon:hover {
-  color: var(--theme-color);
+  color: var(--themecolor1);
 }
 .img-responsive {
   border-radius: 5px;
@@ -265,6 +261,30 @@ hr {
 }
 .dropzone-control-button button {
   margin: 2px 2px 2px 0;
+}
+
+.uploaded-attachment-displaybox {
+  /* padding: 0.625rem 0.938rem; */
+  height: 2.938rem;
+  /* background-color: #e9ebf0; */
+  border-radius: 0.313rem;
+  border: var(--div-border);
+  align-items: center;
+  display: flex;
+  margin-bottom: 1rem;
+}
+.uploaded-attachment-displaybox .row {
+  width: 100%;
+  align-items: center;
+}
+.uploaded-attachment-displaybox .file-name {
+  width: 97%;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.uploaded-attachment-displaybox .action-button {
+  margin: 0 0.2rem;
 }
 
 @media (max-width: 425px) {
