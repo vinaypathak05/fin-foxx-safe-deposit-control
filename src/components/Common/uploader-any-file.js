@@ -80,8 +80,9 @@ export default function AllFilesDrop(props) {
             {fileOld ? (
               <a
                 className="action-button"
-                href={`${fileUrl}&download=true`}
+                href={`${fileUrl}`}
                 title="Download"
+                download
               >
                 <img
                   className="action-button cursor-pointer"

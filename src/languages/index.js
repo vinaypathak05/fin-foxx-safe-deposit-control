@@ -62,6 +62,7 @@ const LocaleStrings = new LocalizedStrings({
     button_cashback_amount: "Cashback Amount",
     button_upload_new_file: "Upload New File",
     button_view_kyc: "View KYC",
+    button_download_approval_pdf: "Download Approval Pdf",
     button_new_plan: "New Plan",
     button_upload_new_image: "Upload New",
     button_crop: "Crop",

@@ -4,7 +4,7 @@ import _ from "lodash";
 import { Card, CardHeader, CardBody, Row, Col, Button } from "reactstrap";
 import ImgsViewer from "react-images-viewer";
 import { openCustomerApproveModal } from "../../action";
-import { BASE_IMAGES_URL } from "../../../Common/constant";
+import { BASE_IMAGES_URL, DEVELOPMENT_TYPE } from "../../../Common/constant";
 import LocaleStrings from "../../../../languages";
 
 class CustomerOtherInfo extends Component {
@@ -116,6 +116,23 @@ class CustomerOtherInfo extends Component {
             </CardHeader>
 
             <CardBody>
+              {DEVELOPMENT_TYPE === "mohajon" &&
+              selectedCustomer &&
+              selectedCustomer.details &&
+              selectedCustomer.details.approvalstatus === "approved" &&
+              selectedCustomer.details.approvalpdf ? (
+                <a
+                  className="btn btn-primary action-button"
+                  target="_blank"
+                  href={`${BASE_IMAGES_URL}/${selectedCustomer.details.approvalpdf}`}
+                  title="Download"
+                  download
+                >
+                  {LocaleStrings.button_download_approval_pdf}
+                </a>
+              ) : (
+                ""
+              )}
               {kycImgs.length > 0 ? (
                 <Button color="primary" onClick={this.viewKyc}>
                   {LocaleStrings.button_view_kyc}
